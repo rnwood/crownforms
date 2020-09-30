@@ -1,0 +1,9 @@
+node_modules
+/ClientApp/pages/testform.json.ts
+/wwwroot/dist
+/ClientApp/dist
+/client/src/testform.json.ts
+.vs
+/gdforms/debug.log
+/gdforms/pages/api/form/TestForm.ts
+/gdforms/.initdb

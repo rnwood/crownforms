@@ -1,0 +1,23 @@
+$inter-font-display: swap;
+$inter-font-path: "~inter-ui/Inter (web)";
+@import "~inter-ui/default";
+@import "~inter-ui/variable";
+$govuk-font-family: "Inter";
+@import "govuk-frontend/govuk/all";
+html {
+  font-family: "Inter", "system-ui";
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", "system-ui";
+  }
+}
+
+body {
+  margin: 0;
+}
+
+#__next.admin {
+  height: 100vh;
+}

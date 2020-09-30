@@ -1,0 +1,68 @@
+expression 
+	:= _ head=term tail=booleanExpressionTail* _
+
+booleanExpressionTail
+	:= tail={ addExpression | orExpression | andExpression | equalsExpression | notEqualsExpression | isExpression | isntExpression | containsExpression | icontainsExpression | lessThanExpression | lessThanEqualExpression | greaterThanExpression | greaterThanEqualExpression }
+
+addExpression
+	:= _ '\+' _ right=term
+
+orExpression
+	:= _ {'\|\|' | 'or'} _ right=expression
+    
+andExpression 
+	:= _ {'&&' | 'and'} _ right=expression
+    
+equalsExpression
+	:= _ '=' _ right=term
+    
+notEqualsExpression 
+	:= _ { '\<\>' | '\!=' } _ right=term
+    
+isExpression 
+	:= _ 'is' _ right=term
+    
+isntExpression 
+	:= _ 'isnt' _ right=term
+
+containsExpression 
+	:= _ 'contains' _ right=term
+
+icontainsExpression 
+	:= _ 'icontains' _ right=term
+
+lessThanExpression
+	:= _ '\<' _ right=term
+
+lessThanEqualExpression
+	:= _ '\<=' _ right=term
+
+greaterThanExpression
+	:= _ '\>' _ right=term
+
+greaterThanEqualExpression
+	:= _ '\>=' _ right=term		
+    
+_ 
+	:= '\s*'
+
+term 
+	:= fieldName | stringLiteral | numberLiteral | functionCall | { _ '\('? _ expression=expression _ '\)'? _ }
+
+fieldName 
+	:= '{' fieldName='[^}]+' '}'
+    
+stringLiteral :=
+	'\'' value='([^\'\\]||\\\\|\\\')*' '\''
+
+numberLiteral :=
+	value='[0-9]+(\.[0-9]+)?'
+
+functionCall
+	:= name='[a-z]+' '\(' _ args=functionArgs _ '\)'
+
+functionArgs
+	:= e=expression tail=functionArgsTail*
+
+functionArgsTail
+	:= _ ',' _ e=expression 

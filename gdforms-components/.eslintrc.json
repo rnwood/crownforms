@@ -1,0 +1,52 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
+  ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "plugins": [],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 11,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "root": true,
+  "env": {
+    "jasmine": true,
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "import/no-internal-modules": [ "error", {
+      "allow": [ "**/expressions", "**/models", "**/components", "react-icons/*" ]
+    } ]
+  },
+  "overrides": [
+    {
+      "files": ["*.test.js", "*.test.jsx", "*.test.tsx", "*.test.ts"],
+      "rules": {
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "extends": [
+      ],
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+replicaCount: 1
+image:
+  pullPolicy: IfNotPresent
+service:
+  name: node
+  type: ClusterIP
+  externalPort: 3000
+  internalPort: 3000
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+ingress:
+  enabled: false
+postgres:
+  postgresql:
+    password: password

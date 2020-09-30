@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "build",
+			"path": "gdforms-components/",
+			"problemMatcher": [
+				"$tsc-watch"
+			],
+			"group": "build",
+			"label": "npm: build - gdforms-components",
+			"detail": "tsc --build \"./tsconfig.json\"",
+			"isBackground": true
+		}
+	]
+}

@@ -1,0 +1,9 @@
+**/.git
+**/.next
+**/.vscode
+**/.initdb
+**/node_modules
+**/*.log
+Dockerfile
+draft.toml
+charts/

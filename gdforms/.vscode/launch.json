@@ -1,0 +1,60 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Next: Node with Kubernetes",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/next",
+      "env": {
+        "NODE_OPTIONS": "--inspect"
+      },
+      "port": 9229,
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "preLaunchTask": "bridge-to-kubernetes.service"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Next: Chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Next: Node",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/next",
+      "env": {
+        "NODE_OPTIONS": "--inspect",
+        "GDFORMS_DATABASEURL":"postgres://postgres:password@localhost:5432/postgres"
+      },
+      "port": 9229,
+      "console": "integratedTerminal",
+      "sourceMaps": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Next - start: Node",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/next",
+      "args": [
+        "start"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--inspect"
+      },
+      "port": 9229,
+      "console": "integratedTerminal",
+      "sourceMaps": true
+    }
+  ],
+  "compounds": [
+      {
+          "name": "Next: Full",
+          "configurations": ["Next: Node", "Next: Chrome"]
+      }
+  ]
+}

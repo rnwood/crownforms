@@ -1,0 +1,255 @@
+{
+  "name": "gdforms-components",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Robert Wood <rob@rnwood.co.uk>",
+  "license": "MIT",
+  "main": "dist/cjs/all.js",
+  "renderer": "dist/cjs/renderer.js",
+  "designer": "dist/cjs/designer.js",
+  "module": "dist/es/index.es.js",
+  "jsnext:main": "dist/cjs/renderer/index.es.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development BABEL_ENV=development yarn run watch",
+    "watch": "rimraf dist && rollup -c -w",
+    "test": "jest",
+    "test:coverage": "jest --coverage --forceExit --colors",
+    "lint": "esw --ext .jsx --ext .js --color",
+    "lint:fix": "yarn run lint --fix",
+    "build": "rimraf dist && cross-env NODE_ENV=production BABEL_ENV=production rollup -c",
+    "prerelease": "yarn run lint:fix && yarn run test:coverage && yarn run build",
+    "release": "yarn publish",
+    "predeploy": "",
+    "deploy": ""
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.1",
+    "@material-ui/icons": "^4.9.1",
+    "audit": "0.0.6",
+    "core-js": "^3.7.0",
+    "fix": "0.0.6",
+    "sanitize-html": "^2.1.2",
+    "xmldom": "^0.4.0",
+    "xpath": "^0.0.32"
+  },
+  "peerDependencies": {
+    "@fluentui/react": "^7.147.1",
+    "core-js": "^3.7.0",
+    "govuk-frontend": "^3.9.1",
+    "inter-ui": "^3.15.0",
+    "mobx": "^5.15.7",
+    "mobx-react": "^6.3.1",
+    "mobx-react-lite": "^2.2.2",
+    "react": "^16.14.0",
+    "react-beautiful-dnd": "^13.0.0",
+    "react-dom": "^16.14.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-decorators": "^7.12.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.11.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.12.1",
+    "@fluentui/react": "^7.147.1",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-url": "^5.0.1",
+    "@svgr/rollup": "^5.4.0",
+    "@svgr/webpack": "^5.4.0",
+    "@testing-library/dom": "^7.22.3",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^10.4.9",
+    "@testing-library/user-event": "^12.1.1",
+    "@types/classnames": "^2.2.10",
+    "@types/react": "^16.9.46",
+    "@types/react-beautiful-dnd": "^13.0.0",
+    "@types/react-dom": "^16.9.8",
+    "@types/sanitize-html": "^1.27.0",
+    "@types/xmldom": "^0.1.30",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.5.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.3.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-named-asset-import": "^0.3.6",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "babel-preset-react-app": "^9.1.2",
+    "classnames": "^2.2.6",
+    "cross-env": "^7.0.2",
+    "css-loader": "^4.2.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.3",
+    "esbuild": "^0.7.21",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.14.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.1.0",
+    "eslint-plugin-standard": "^4.0.2",
+    "eslint-watch": "^7.0.0",
+    "file-loader": "^6.1.0",
+    "from": "^0.1.7",
+    "gh-pages": "^3.1.0",
+    "govuk-frontend": "^3.9.1",
+    "import": "^0.0.6",
+    "inter-ui": "^3.15.0",
+    "jasmine-expect": "^4.0.3",
+    "jest": "^26.4.2",
+    "jest-environment-jsdom-fourteen": "^1.0.1",
+    "jest-pnp-resolver": "^1.2.2",
+    "jest-resolve": "^26.4.0",
+    "jest-watch-typeahead": "^0.6.0",
+    "madge": "^3.11.0",
+    "mobx": "^5.15.7",
+    "mobx-react": "^6.3.1",
+    "mobx-react-lite": "^2.2.2",
+    "nanoid": "^3.1.16",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-app-polyfill": "^1.0.6",
+    "react-beautiful-dnd": "^13.0.0",
+    "react-docgen-typescript": "^1.20.2",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^4.0.0-next.117",
+    "react-test-renderer": "^16.13.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.26.5",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-dts": "^1.4.13",
+    "rollup-plugin-esbuild": "^2.5.2",
+    "rollup-plugin-inject-process-env": "^1.3.0",
+    "rollup-plugin-peer-deps-external": "^2.2.3",
+    "rollup-plugin-postcss": "^3.1.5",
+    "rollup-plugin-terser": "^7.0.0",
+    "sass-loader": "^9.0.3",
+    "source-map-loader": "^1.0.2",
+    "string.prototype.replaceall": "^1.0.3",
+    "style-loader": "^1.2.1",
+    "ts-loader": "^8.0.2",
+    "typescript": "^4.0.2",
+    "url-loader": "^4.1.0",
+    "webpack": "^4.44.1"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts",
+      "!src/**/index.js"
+    ],
+    "resolver": "jest-pnp-resolver",
+    "setupFiles": [
+      "react-app-polyfill/jsdom"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/config/setupTests.js"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+    ],
+    "testEnvironment": "jest-environment-jsdom-fourteen",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.css$": "<rootDir>/config/cssTransform.js",
+      "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+      "^.+\\.module\\.(css|sass|scss)$"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web",
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+    },
+    "moduleFileExtensions": [
+      "web.js",
+      "js",
+      "web.ts",
+      "ts",
+      "web.tsx",
+      "tsx",
+      "json",
+      "web.jsx",
+      "jsx",
+      "node"
+    ],
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ]
+  },
+  "babel": {
+    "sourceMaps": true,
+    "retainLines": true,
+    "presets": [
+      [
+        "react-app",
+        {
+          "typescript": true
+        }
+      ],
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "usage",
+          "corejs": {
+            "version": 3,
+            "proposals": true
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ],
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-proposal-optional-chaining",
+      "@babel/plugin-syntax-dynamic-import",
+      "transform-react-remove-prop-types"
+    ]
+  },
+  "browserslist": [
+    "defaults",
+    "IE 11",
+    "maintained node versions"
+  ]
+}

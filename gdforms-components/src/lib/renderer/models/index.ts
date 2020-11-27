@@ -42,7 +42,6 @@ export { SubFormFieldModel } from "./SubFormFieldModel";
 export type { ISubFormFieldOptions, ISubFormFieldState as ISubFormFieldState } from "./SubFormFieldModel";
 export { RepeatableSubFormFieldModel } from "./RepeatableSubFormFieldModel";
 export type { IRepeatableSubFormFieldOptions, IRepeatableSubFormFieldState } from "./RepeatableSubFormFieldModel";
-export * from "./firmstep";
 export type { FormComponentConstructor } from "./FormComponentConstructor";
 export type { IFieldModelControl } from "./IFieldModelControl";
 export * from "./ValidationErrorModel";

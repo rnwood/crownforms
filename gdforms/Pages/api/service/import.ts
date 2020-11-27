@@ -1,4 +1,4 @@
-import { FFFormConverter, IFFFormModel } from "gdforms-components"
+import { FFFormConverter, IFFFormModel } from "gdforms-components/dist/cjs/all"
 import { NextApiRequest, NextApiResponse } from "next"
 import {Db, FormRecord, ServiceRecord} from '../../../db';
 export default async function handler(req :NextApiRequest, res: NextApiResponse) {

@@ -72,29 +72,17 @@ const plugins = (externalize) => {
 
 const configs = [
   {
-    input: "src/lib/index.ts",
+    input: "src/lib/renderer/index.ts",
     output: [
       {
         file: pkg.types,
-        format: "es",
-        sourcemap: true,
+        format: "es"
       },
     ],
     plugins: [dts()],
   },
   {
-    input: "src/lib/index.ts",
-    output: [
-      {
-        file: pkg.module,
-        format: "es",
-        sourcemap: true,
-      },
-    ],
-    plugins: plugins(true),
-  },
-  {
-    input: "src/lib/index.ts",
+    input: "src/lib/renderer/index.ts",
     output: [
       {
         file: pkg.main,
@@ -104,33 +92,32 @@ const configs = [
     ],
     plugins: plugins(true),
   },
+  {
+    input: "src/lib/index.ts",
+    output: [
+      {
+        file: "dist/cjs/all.js",
+        format: "cjs",
+        sourcemap: true,
+      },
+    ],
+    plugins: plugins(true),
+  },
+  {
+    input: "src/lib/index.ts",
+    output: [
+      {
+        file: "dist/cjs/all.d.ts",
+        format: "es"
+      },
+    ],
+    plugins: [dts()],
+  },
 ];
 
 if (process.env.NODE_ENV === "production" && process.env.FASTBUILD === "") {
   configs.push(
     ...[
-      {
-        input: "src/lib/renderer/index.ts",
-        output: [
-          {
-            file: pkg.renderer,
-            format: "cjs",
-            sourcemap: true,
-          },
-        ],
-        plugins: plugins(true),
-      },
-      {
-        input: "src/lib/designer/index.ts",
-        output: [
-          {
-            file: pkg.designer,
-            format: "cjs",
-            sourcemap:true,
-          },
-        ],
-        plugins: plugins(true),
-      },
       {
         context: "window",
         input: "src/lib/noreact.tsx",

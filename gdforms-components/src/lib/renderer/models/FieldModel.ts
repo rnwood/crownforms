@@ -1,7 +1,6 @@
 import { computed, observable } from "mobx";
 import { Expression } from "./expressions";
 import { FFConditionParser } from "./conditions";
-import { IFFFieldModel } from "./firmstep";
 import {
   ExpressionFieldValidationRuleModel,
   RegexFieldValidationRuleModel,

@@ -13,7 +13,6 @@ import {
   IFormComponentState,
 } from ".";
 import { IFieldModelState } from "./FieldModel";
-import { IFFSubFormFieldModel } from "./firmstep";
 import { IFormModelState } from "./FormModel";
 import { StringValue } from "./TypedValue";
 

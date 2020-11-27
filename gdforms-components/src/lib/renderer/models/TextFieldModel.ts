@@ -8,7 +8,6 @@ import {
   ValueFieldModel,
 } from ".";
 import { IFieldModelState } from "./FieldModel";
-import { IFFTextFieldModel } from "./firmstep";
 
 export interface ITextFieldOptions extends IFieldModelOptions {
   type: "text";

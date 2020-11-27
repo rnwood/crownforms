@@ -1,7 +1,6 @@
 import { observable } from "mobx";
 import { StringValue } from "./TypedValue";
 import {FieldModel,  IFieldModelOptions, SectionModel, ValueFieldModel } from ".";
-import { IFFHtmlFieldModel } from "./firmstep";
 import {LiteralExpression} from "./expressions";
 import { IFieldModelState } from './FieldModel';
 

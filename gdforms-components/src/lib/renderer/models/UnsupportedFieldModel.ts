@@ -7,7 +7,6 @@ import {
   IFieldModelOptions,
 } from ".";
 import { IFieldModelState } from "./FieldModel";
-import { IFFFieldModel } from "./firmstep";
 import { IOptions } from "./FormComponent";
 import { StringValue } from "./TypedValue";
 

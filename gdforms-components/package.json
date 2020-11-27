@@ -4,12 +4,8 @@
   "description": "",
   "author": "Robert Wood <rob@rnwood.co.uk>",
   "license": "MIT",
-  "main": "dist/cjs/all.js",
-  "renderer": "dist/cjs/renderer.js",
-  "designer": "dist/cjs/designer.js",
-  "module": "dist/es/index.es.js",
-  "jsnext:main": "dist/cjs/renderer/index.es.js",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.ts",
   "files": [
     "dist"
   ],

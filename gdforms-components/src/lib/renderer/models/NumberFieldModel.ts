@@ -1,6 +1,5 @@
 import { NumberValue, StringValue } from "./TypedValue";
 import {SectionModel,FieldModel, IFieldModelOptions, ValueFieldModel } from ".";
-import {IFFNumberFieldModel } from "./firmstep";
 import { IFieldModelState } from './FieldModel';
 
 export interface INumberFieldOptions extends IFieldModelOptions {

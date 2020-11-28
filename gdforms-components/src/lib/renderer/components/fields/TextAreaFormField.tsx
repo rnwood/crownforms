@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { observer } from "mobx-react";
-import {FormField, FieldValidationErrors} from ".";
+import { FormField, FieldValidationErrors } from ".";
 import { StringValue, TextFieldModel } from "../../models";
 
 @observer
@@ -46,6 +46,7 @@ export class TextAreaFormField extends FormField<TextFieldModel> {
         <FieldValidationErrors field={this.props.field} />
 
         <textarea
+          disabled={this.props.field.readOnly}
           className={`govuk-textarea ${
             this.props.field.validationErrors.length
               ? "govuk-textarea--error"

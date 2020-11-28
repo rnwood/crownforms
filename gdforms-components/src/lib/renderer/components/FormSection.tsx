@@ -89,7 +89,7 @@ export class FormSection extends React.Component<IFormSectionProps> {
             field:f, index: i,
             hooks: this.props.hooks
           };
-          return this.props.hooks.onRenderField ? this.props.hooks.onRenderField(fieldProps) : <FormSectionField key={i.toString()} {...fieldProps} />
+          return this.props.hooks?.onRenderField ? this.props.hooks.onRenderField(fieldProps) : <FormSectionField key={i.toString()} {...fieldProps} />
         })}
       </>
     );

@@ -33,6 +33,7 @@ export interface IFormModelState extends IFormComponentState {
   lookups: ILookupModelState[];
   sections: ISectionModelState[];
   queryString: string|null;
+  forceReadOnly: boolean;
 }
 
 export class FormModel extends FormComponent<
@@ -56,6 +57,7 @@ export class FormModel extends FormComponent<
     super(parent, options, state);
 
     this.queryString = state?.queryString ?? queryString;
+    this.forceReadOnly = state?.forceReadOnly ?? false;
 
     this.appendChildren(
       ...this.options.sections.map(
@@ -83,13 +85,25 @@ export class FormModel extends FormComponent<
     }
   }
 
+  @computed get readOnly() : boolean {
+    if (this.parent instanceof FieldModel && this.parent.readOnly) {
+      return true;
+    }
+
+    return this.forceReadOnly;
+  }
+
+  @observable
+  private forceReadOnly: boolean = false;
+
   getState(): IFormModelState {
     return {
       id: this.id,
       key: this.id,
       lookups: this.lookups.map((l) => l.getState()),
       sections: this.sections.map((s) => s.getState()),
-      queryString: this.queryString ?? null
+      queryString: this.queryString ?? null,
+      forceReadOnly: this.forceReadOnly
     };
   }
 
@@ -101,15 +115,18 @@ export class FormModel extends FormComponent<
     return new FormModel(options, parent, undefined, state);
   }
 
-  static async loadAsync(
+  static async loadAsync({options, parent, queryString, readOnly}: {
     options: IFormModelOptions,
-    parent:
-      | SubFormFieldModel
+    parent?:
+      SubFormFieldModel
       | RepeatableSubFormFieldModel
-      | undefined = undefined,
-    queryString: string|undefined
+      | undefined,
+    queryString?: string|undefined,
+    readOnly?: boolean
+  }
   ): Promise<FormModel> {
     let form = new FormModel(options, parent, queryString);
+    form.forceReadOnly=readOnly??false;
     await form.initAsync();
     return form;
   }

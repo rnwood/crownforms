@@ -2,8 +2,13 @@ import * as React from "react";
 
 import { observer } from "mobx-react";
 import { observable } from "mobx";
-import {FormField, IFormFieldProps, FieldValidationErrors } from ".";
-import { DateValue, DateFieldModel, ValidationErrorModel, ValidationErrorModelSeverity } from "../../models";
+import { FormField, IFormFieldProps, FieldValidationErrors } from ".";
+import {
+  DateValue,
+  DateFieldModel,
+  ValidationErrorModel,
+  ValidationErrorModelSeverity,
+} from "../../models";
 
 @observer
 export class DateFormField extends FormField<DateFieldModel> {
@@ -68,8 +73,12 @@ export class DateFormField extends FormField<DateFieldModel> {
       this.props.field.value = new DateValue(newValue);
     } else {
       if (this.day || this.month || this.year) {
-        this.controlValueError = new ValidationErrorModel(this.props.field,"Invalid date", ValidationErrorModelSeverity.Correctable);
-      } 
+        this.controlValueError = new ValidationErrorModel(
+          this.props.field,
+          "Invalid date",
+          ValidationErrorModelSeverity.Correctable
+        );
+      }
       this.props.field.value = new DateValue(null);
     }
   }
@@ -85,6 +94,7 @@ export class DateFormField extends FormField<DateFieldModel> {
         }`}
       >
         <fieldset
+          disabled={this.props.field.readOnly}
           className="govuk-fieldset"
           role="group"
           aria-describedby={`${

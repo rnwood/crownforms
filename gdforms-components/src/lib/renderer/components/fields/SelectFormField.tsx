@@ -30,10 +30,7 @@ export class SelectFormField extends FormField<SelectOneFieldModel> {
         }`}
       >
         {!this.props.field.options.hideLabel && (
-          <label
-            className="govuk-label"
-            htmlFor={this.props.field.id}
-          >
+          <label className="govuk-label" htmlFor={this.props.field.id}>
             {this.props.field.displayNameWithOptionalSuffix}
           </label>
         )}
@@ -47,6 +44,7 @@ export class SelectFormField extends FormField<SelectOneFieldModel> {
         <FieldValidationErrors field={this.props.field} />
 
         <select
+          disabled={this.props.field.readOnly}
           className={`govuk-select ${
             this.props.field.validationErrors.length
               ? "govuk-select--error"

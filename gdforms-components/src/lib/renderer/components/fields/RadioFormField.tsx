@@ -30,6 +30,7 @@ export class RadioFormField extends FormField<SelectOneFieldModel> {
         }`}
       >
         <fieldset
+          disabled={this.props.field.readOnly}
           className="govuk-fieldset"
           aria-describedby={`${
             this.props.field.options.hintText
@@ -56,9 +57,7 @@ export class RadioFormField extends FormField<SelectOneFieldModel> {
           <div
             ref={this.divRef}
             className={`govuk-radios ${
-              this.props.field.choices.length <= 2
-                ? "govuk-radios--inline"
-                : ""
+              this.props.field.choices.length <= 2 ? "govuk-radios--inline" : ""
             }`}
           >
             {this.props.field.choices.map((v, i) => (

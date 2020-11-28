@@ -19,6 +19,8 @@ export interface IFFFieldModelProps extends IFFModel {
   defaultValue?: string | null;
   defaultValueText?: string | null;
   defaultType?: string|null;
+  readOnly?: boolean|null;
+  readonlyCondition?: string|null;
 }
 
 export interface IFFFieldModel extends IFFModel {

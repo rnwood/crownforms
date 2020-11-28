@@ -71,10 +71,11 @@ export class SubFormFieldModel extends FieldModel<
 
     if (state) {
       this.valueIsDefault = state.valueIsDefault;
-      this.internalValue = new SubFormValue( FormModel.continueFromState(this.options.form, this, state.form!));
+      this.internalValue = new SubFormValue(
+        FormModel.continueFromState(this.options.form, this, state.form!)
+      );
     }
   }
-
 
   protected async postInitComponentAsync(): Promise<void> {
     await super.postInitComponentAsync();
@@ -90,7 +91,10 @@ export class SubFormFieldModel extends FieldModel<
   }
 
   protected async getDefaultValueAsync(): Promise<SubFormValue> {
-    let item = await FormModel.loadAsync(this.options.form, this, undefined);
+    let item = await FormModel.loadAsync({
+      options: this.options.form,
+      parent: this
+    });
     return new SubFormValue(item);
   }
 

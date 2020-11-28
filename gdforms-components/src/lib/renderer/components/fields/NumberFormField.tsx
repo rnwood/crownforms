@@ -1,8 +1,8 @@
 import * as React from "react";
 
 import { observer } from "mobx-react";
-import { FormField,FieldValidationErrors } from ".";
-import { NumberValue,NumberFieldModel  } from "../../models";
+import { FormField, FieldValidationErrors } from ".";
+import { NumberValue, NumberFieldModel } from "../../models";
 
 @observer
 export class NumberFormField extends FormField<NumberFieldModel> {
@@ -51,6 +51,7 @@ export class NumberFormField extends FormField<NumberFieldModel> {
             </div>
           )}
           <input
+            disabled={this.props.field.readOnly}
             className={`govuk-input ${
               this.props.field.validationErrors.length
                 ? "govuk-input--error"

@@ -86,7 +86,7 @@ export class RepeatableSubFormFieldModel extends FieldModel<
 
   protected async initComponentAsync(): Promise<void> {
     await super.initComponentAsync();
-    let item = await FormModel.loadAsync(this.formOptions, this, undefined);
+    let item = await FormModel.loadAsync({options: this.formOptions, parent: this});
 
     this.value = new SubFormValueArrayValue([new SubFormValue(item)]);
     this.valueIsDefault = false;
@@ -102,7 +102,7 @@ export class RepeatableSubFormFieldModel extends FieldModel<
 
   private async addNewItemAsyncInternal(): Promise<SubFormValue> {
     const newItem = new SubFormValue(
-      await FormModel.loadAsync(this.formOptions, this, undefined)
+      await FormModel.loadAsync({options: this.formOptions, parent: this})
     );
     this.value.value.push(newItem);
 

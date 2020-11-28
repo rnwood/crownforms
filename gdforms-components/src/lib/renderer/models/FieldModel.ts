@@ -42,6 +42,8 @@ export interface IFieldModelOptions extends IFormComponentOptions {
   valueType: string;
   controlType: string;
   validationRules?: IFieldValidationRuleModelOptions[];
+  readOnly?: boolean|null;
+  readOnlyCondition?: string|null; 
 }
 
 export interface IFieldModelState extends IFormComponentState {
@@ -207,7 +209,36 @@ export abstract class FieldModel<
       : undefined;
   }
 
+  @computed private get readOnlyCondition():
+  | Expression<BooleanValue>
+  | undefined {
+  return this.options.readOnlyCondition
+    ? FFConditionParser.parseBooleanExpression(this.options.readOnlyCondition)
+    : undefined;
+}
+
   protected abstract async getDefaultValueAsync(): Promise<T>;
+
+  @computed get readOnly() : boolean {
+
+    if (this.parentSection?.readOnly) {
+      return true;
+    }
+
+    if (this.options.readOnly) {
+      return true;
+    }
+
+    if (this.options.readOnlyCondition) {
+      return (
+        (this.parentForm
+          ? this.readOnlyCondition?.getResult(this.parentForm).value
+          : false) === true
+      );
+    }
+
+    return false;
+  }
 
   @computed get visible(): boolean {
     if (this.options.hide) {

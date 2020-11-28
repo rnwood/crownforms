@@ -183,11 +183,13 @@ export class FFFormConverter {
           : source.props.defaultValueText ?? null,
       hintText: source.props.helpText ?? null,
       displayCondition: source.props.displayCondition ?? null,
-      requiredCondition: source.props.mandatoryCondition || null,
+      requiredCondition: source.props.mandatoryCondition ?? null,
       metadata: {
         firmstep: source,
       },
-      validationRules
+      validationRules,
+      readOnly: source.props.readOnly ?? null,
+      readOnlyCondition: source.props.readonlyCondition ?? null
     };
   }
 

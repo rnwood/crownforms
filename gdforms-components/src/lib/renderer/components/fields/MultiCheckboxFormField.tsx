@@ -40,6 +40,7 @@ export class MultiCheckboxFormField extends FormField<SelectSeveralFieldModel> {
         }`}
       >
         <fieldset
+          disabled={this.props.field.readOnly}
           className="govuk-fieldset"
           aria-describedby={`${
             this.props.field.options.hintText

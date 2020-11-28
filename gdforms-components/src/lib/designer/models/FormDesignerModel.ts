@@ -1,9 +1,32 @@
 ﻿import { observable, computed } from "mobx";
-import {FormComponentConstructor, FormComponent, FormModel, TextFieldModel, BooleanTwoChoiceFieldModel, StringTwoChoiceFieldModel, IFormComponentOptions, IFormComponentState} from "../../renderer";
+import {FormComponentConstructor, FormComponent, FormModel, TextFieldModel, BooleanTwoChoiceFieldModel, StringTwoChoiceFieldModel, IFormComponentOptions, IFormComponentState, IFormModelOptions, IFormModelState} from "../../renderer";
+
+export interface IFormDesignerModelState {
+  form: IFormModelState
+}
 
 export class FormDesignerModel {
-  constructor(form: FormModel) {
+  private constructor(form: FormModel, state: IFormDesignerModelState|undefined) {
     this.form = form;
+  }
+
+  static async loadAsync(options: IFormModelOptions) : Promise<FormDesignerModel> {
+    const form = await FormModel.loadAsync({options, readOnly: true});
+    return new FormDesignerModel(form, undefined);
+  }
+
+  getState() : IFormDesignerModelState {
+    return {
+      form: this.form.getState()
+    };
+  }
+
+  static continueFromState(
+    options: IFormModelOptions,
+    state: IFormDesignerModelState
+  ) {
+    const form = FormModel.continueFromState(options, undefined, state.form);
+    return new FormDesignerModel(form, state);
   }
 
   readonly form: FormModel;

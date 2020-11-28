@@ -98,6 +98,14 @@ export class SectionModel extends FormComponent<
     );
   }
 
+  @computed get readOnly() : boolean {
+    if (this.parentForm?.readOnly) {
+      return true;
+    }
+
+    return false;
+  }
+
   getState(): ISectionModelState {
     return {
       id: this.id,

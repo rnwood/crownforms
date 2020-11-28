@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Form, FormModel, IFormModelOptions } from "./renderer";
 
-class EfForms {
-  init(elementId: string, options: IFormModelOptions | string): FormModel {
+class GdForms {
+  async init(elementId: string, options: IFormModelOptions | string): Promise<FormModel> {
     let formOptions: IFormModelOptions;
     if (typeof options === "string") {
       formOptions = JSON.parse(options);
@@ -11,7 +11,7 @@ class EfForms {
       formOptions = options;
     }
 
-    let formModel = new FormModel(formOptions);
+    let formModel = await FormModel.loadAsync(formOptions, undefined, document.location.search);
 
     ReactDOM.render(
       <Form form={formModel} />,
@@ -22,6 +22,6 @@ class EfForms {
   }
 }
 
-let instance = new EfForms();
+let instance = new GdForms();
 
 export default instance;

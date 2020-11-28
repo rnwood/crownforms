@@ -15,7 +15,8 @@ export class LookupButton extends FormField<LookupButtonModel> {
   }
 
   render() {
-    return           <button
+    return           <button 
+    disabled={this.props.field.readOnly}
     type="button"
     className="govuk-button govuk-button--secondary"
     data-module="govuk-button"

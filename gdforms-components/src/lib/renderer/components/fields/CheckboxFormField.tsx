@@ -33,6 +33,7 @@ export class CheckboxFormField extends FormField<
         }`}
       >
         <fieldset
+         disabled={this.props.field.readOnly}
           className="govuk-fieldset"
           aria-describedby={`${
             this.props.field.options.hintText

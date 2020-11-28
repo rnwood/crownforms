@@ -9,19 +9,42 @@ import {
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { FormComponentConstructor, FormModel, Form, FormComponent, IFieldModelOptions, TypedValue, IFormComponentOptions, IFormComponentState, IFormSectionFieldProps, IFormSectionProps } from "../../renderer";
-import {ComponentTree,  ComponentProperties, ComponentInsert, IconsSetup, DesignerFormSectionField, DesignerFormSection}  from ".";
-import {FormDesignerModel} from "../models";
+import {
+  FormComponentConstructor,
+  FormModel,
+  Form,
+  FormComponent,
+  IFieldModelOptions,
+  TypedValue,
+  IFormComponentOptions,
+  IFormComponentState,
+  IFormSectionFieldProps,
+  IFormSectionProps,
+  FieldModel,
+  IFormModelOptions,
+  SectionModel,
+} from "../../renderer";
+import {
+  ComponentTree,
+  ComponentProperties,
+  ComponentInsert,
+  IconsSetup,
+  DesignerFormSectionField,
+  DesignerFormSection,
+} from ".";
+import { FormDesignerModel } from "../models";
 
 interface IProps {
-  form: FormModel;
+  designer: FormDesignerModel;
 }
 
 @observer
 export class FormDesigner extends React.Component<IProps> {
   constructor(props: IProps) {
     super(props);
-    this.designer = new FormDesignerModel(this.props.form);
+
+
+    this.designer = this.props.designer;
     IconsSetup.setup();
   }
 
@@ -38,8 +61,10 @@ export class FormDesigner extends React.Component<IProps> {
         result.destination.droppableId.lastIndexOf(":") + 1
       );
       const target = this.designer.form.getComponentById(targetComponentName);
-      const newComponentType: FormComponentConstructor<FormComponent<IFormComponentOptions, IFormComponentState>, IFormComponentOptions> = this
-        .designer.fieldTypes[result.source.index];
+      const newComponentType: FormComponentConstructor<
+        FormComponent<IFormComponentOptions, IFormComponentState>,
+        IFormComponentOptions
+      > = this.designer.fieldTypes[result.source.index];
       if (target?.canInsert(newComponentType)) {
         this.designer.selectedComponent = await target.insertAsync(
           newComponentType,
@@ -65,7 +90,10 @@ export class FormDesigner extends React.Component<IProps> {
         const item = source.fields[result.source.index];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
         const itemConstructor = (item as any)
-          .constructor as FormComponentConstructor<FormComponent<IFormComponentOptions, IFormComponentState>, IFormComponentOptions>;
+          .constructor as FormComponentConstructor<
+          FormComponent<IFormComponentOptions, IFormComponentState>,
+          IFormComponentOptions
+        >;
 
         if (item && target.canInsert(itemConstructor)) {
           source.removeChild(item);
@@ -80,10 +108,16 @@ export class FormDesigner extends React.Component<IProps> {
   };
 
   render(): React.ReactNode {
-
     const hooks = {
-       onRenderField: (p : IFormSectionFieldProps) => <DesignerFormSectionField  designer={this.designer} {...p}/>,
-       onRenderSection: (p : IFormSectionProps) => <DesignerFormSection designer={this.designer} {...p}/>
+      onRenderField: (p: IFormSectionFieldProps) => (
+        <DesignerFormSectionField designer={this.designer} {...p} />
+      ),
+      onRenderSection: (p: IFormSectionProps) => (
+        <DesignerFormSection designer={this.designer} {...p} />
+      ),
+      onGetFieldVisibility: (f: FieldModel<TypedValue, IFieldModelOptions>) =>
+        true,
+      onGetSectionVisibilty: (s: SectionModel) => true
     };
 
     return (
@@ -93,9 +127,7 @@ export class FormDesigner extends React.Component<IProps> {
             <Stack.Item
               styles={{ root: { borderBottom: "1px solid lightgray" } }}
             >
-              <CommandBar
-                items={[                ]}
-              />
+              <CommandBar items={[]} />
             </Stack.Item>
             <Stack.Item grow>
               <Stack
@@ -132,7 +164,11 @@ export class FormDesigner extends React.Component<IProps> {
                           <main className="govuk-main-wrapper">
                             <div className="govuk-grid-row">
                               <div className="govuk-grid-column-full">
-                                <Form hideTitle form={this.props.form} hooks={hooks} />
+                                <Form
+                                  hideTitle
+                                  form={this.props.designer.form}
+                                  hooks={hooks}
+                                />
                               </div>
                             </div>
                           </main>

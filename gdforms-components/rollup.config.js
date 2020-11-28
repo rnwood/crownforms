@@ -123,7 +123,7 @@ if (process.env.NODE_ENV === "production" && process.env.FASTBUILD === "") {
         input: "src/lib/noreact.tsx",
         output: [
           {
-            name: "efforms",
+            name: "gdforms",
             file: "dist/browser/renderer.js",
             format: "umd",
             sourcemap: true,
@@ -142,7 +142,7 @@ if (process.env.NODE_ENV === "production" && process.env.FASTBUILD === "") {
         input: "src/lib/noreact-designer.tsx",
         output: [
           {
-            name: "efformsdesigner",
+            name: "gdformsdesigner",
             file: "dist/browser/designer.js",
             format: "umd",
             sourcemap: true,

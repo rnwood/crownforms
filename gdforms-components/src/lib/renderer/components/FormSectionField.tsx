@@ -109,7 +109,7 @@ export class FormSectionField extends Component<IFormSectionFieldProps> {
     
     return (
       <div key={this.props.field.id}>
-        {(this.props.field.parentForm?.getFieldValue("querystring:_showallfields")?.value || this.props.field.visible) && this.renderField(this.props.field)}
+        {((this.props.hooks?.onGetFieldVisibility && this.props.hooks.onGetFieldVisibility(this.props.field)) || this.props.field.visible) && this.renderField(this.props.field)}
       </div>
     );
   }

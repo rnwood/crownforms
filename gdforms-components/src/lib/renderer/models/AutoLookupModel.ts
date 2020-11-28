@@ -20,17 +20,21 @@ export interface IAutoLookupOptions extends IFieldModelOptions {
 }
 
 export interface IAutoLookupState extends IFieldModelState {
-  lookupError: string|null
+  lookupError: string | null;
 }
 
-export class AutoLookupModel extends FieldModel<VoidValue, IAutoLookupOptions, IAutoLookupState> {
+export class AutoLookupModel extends FieldModel<
+  VoidValue,
+  IAutoLookupOptions,
+  IAutoLookupState
+> {
   getState(): IAutoLookupState {
     return {
       id: this.id,
       key: this.options.name,
       internalValue: null,
       valueIsDefault: true,
-      lookupError: this.lookupError
+      lookupError: this.lookupError,
     };
   }
 
@@ -50,12 +54,18 @@ export class AutoLookupModel extends FieldModel<VoidValue, IAutoLookupOptions, I
   @computed
   protected get validateFieldAlways(): ValidationErrorModel[] {
     if (this.lookupError) {
-      return [new ValidationErrorModel(this, this.lookupError, ValidationErrorModelSeverity.Fatal)]
+      return [
+        new ValidationErrorModel(
+          this,
+          this.lookupError,
+          ValidationErrorModelSeverity.Fatal
+        ),
+      ];
     }
     return [];
   }
 
-  @observable private lookupError: string|null = null;
+  @observable private lookupError: string | null = null;
 
   protected getDefaultValueFromText(text: StringValue): VoidValue {
     throw new Error("Method not implemented.");
@@ -67,15 +77,15 @@ export class AutoLookupModel extends FieldModel<VoidValue, IAutoLookupOptions, I
   protected async postInitComponentAsync(): Promise<void> {
     await super.postInitComponentAsync();
 
-    const promise = this.runLookupAsync();
-    this.addTask({
-      description: "Running auto lookup",
-      promise,
-    });
-    await promise;
+    if (!this.readOnly) {
+      const promise = this.runLookupAsync();
+      this.addTask({
+        description: "Running auto lookup",
+        promise,
+      });
+      await promise;
+    }
   }
-  
-  
 
   async runLookupAsync(): Promise<void> {
     this.lookupError = null;
@@ -83,7 +93,6 @@ export class AutoLookupModel extends FieldModel<VoidValue, IAutoLookupOptions, I
     if (!this.options.lookup || !this.parentForm) {
       return;
     }
-    
 
     let lookup = this.parentForm.getLookup(this.options.lookup);
 
@@ -92,8 +101,8 @@ export class AutoLookupModel extends FieldModel<VoidValue, IAutoLookupOptions, I
     }
 
     try {
-    let result = await lookup.getResultsAsync(this.parentForm);
-    result[0]?.populate(this.parentForm);
+      let result = await lookup.getResultsAsync(this.parentForm);
+      result[0]?.populate(this.parentForm);
     } catch (e) {
       console.error(e);
       this.lookupError = "Failed to load required data.";

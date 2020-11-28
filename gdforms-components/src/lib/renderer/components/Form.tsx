@@ -8,7 +8,7 @@ import {
   Draggable,
   DraggableProvided,
 } from "react-beautiful-dnd";
-import { FormSection, IFormComponentProps as IFormComponentProps, IFormSectionProps } from ".";
+import { FormSection, IFormComponentProps, IFormSectionProps } from ".";
 import {
   FieldModel,
   IFieldModelOptions,
@@ -18,12 +18,11 @@ import {
   ValidationErrorModel,
   ValidationErrorModelSeverity,
 } from "../models";
-import { IFormSectionFieldProps } from './FormSectionField';
+import { IFormSectionFieldProps } from "./FormSectionField";
 
-interface IProps extends IFormComponentProps{
+interface IProps extends IFormComponentProps {
   form: FormModel;
   hideTitle?: boolean;
-
 }
 
 @observer
@@ -125,12 +124,11 @@ export class Form extends React.Component<IProps> {
   }
 
   @computed
-  private get visibleSections() {
-    if (
-      this.props.form.parent &&
-      this.props.form.getFieldValue("querystring:_showallfields")?.value
-    ) {
-      return this.props.form.sections;
+  private get visibleSections(): SectionModel[] {
+    if (this.props.hooks?.onGetSectionVisibility) {
+      return this.props.form.sections.filter((s: SectionModel) =>
+        this.props.hooks!.onGetSectionVisibility!(s)
+      );
     }
 
     return this.props.form.visibleSections;
@@ -154,9 +152,9 @@ export class Form extends React.Component<IProps> {
     const sectionProps: IFormSectionProps = {
       hideTitle: !!this.form.parent,
       data: s,
-      hooks: this.props.hooks
+      hooks: this.props.hooks,
     };
-    return this.props.hooks.onRenderSection ? (
+    return this.props.hooks?.onRenderSection ? (
       this.props.hooks.onRenderSection(sectionProps)
     ) : (
       <FormSection {...sectionProps} />
@@ -175,46 +173,49 @@ export class Form extends React.Component<IProps> {
           ))}
         {this.form.currentSection &&
           this.form.visibleSections.indexOf(this.form.currentSection) > 0 && (
-            <a
-              href="#"
-              role="button"
-              draggable="false"
-              className="govuk-button govuk-button--secondary"
+            <button
+              disabled={this.props.form.readOnly}
+              aria-disabled={this.props.form.readOnly}
+              className={`govuk-button govuk-button--secondary ${
+                this.props.form.readOnly ? "govuk-button--disabled" : ""
+              }`}
               data-module="govuk-button"
               onClick={this.handlePrevSectionClick}
             >
               Back
-            </a>
+            </button>
           )}
         &nbsp;&nbsp;
         {this.form.currentSection &&
           this.form.visibleSections.length >
             this.form.visibleSections.indexOf(this.form.currentSection) + 1 && (
-            <a
-              href="#"
-              role="button"
-              draggable="false"
-              className="govuk-button"
+            <button
+              disabled={this.props.form.readOnly}
+              aria-disabled={this.props.form.readOnly}
+              className={`govuk-button ${
+                this.props.form.readOnly ? "govuk-button--disabled" : ""
+              }`}
               data-module="govuk-button"
               onClick={this.handleNextSectionClick}
             >
               Next
-            </a>
+            </button>
           )}
         {this.form.parent == null &&
           this.form.currentSection &&
           this.form.visibleSections.length ===
             this.form.visibleSections.indexOf(this.form.currentSection) + 1 && (
-            <a
-              href="#"
-              role="button"
-              draggable="false"
-              className="govuk-button"
+            <button
+              disabled={this.props.form.readOnly}
+              aria-disabled={this.props.form.readOnly}
+              className={`govuk-button ${
+                this.props.form.readOnly ? "govuk-button--disabled" : ""
+              }`}
               data-module="govuk-button"
               onClick={this.handleSubmitClick}
             >
               Submit
-            </a>
+            </button>
           )}
       </>
     );

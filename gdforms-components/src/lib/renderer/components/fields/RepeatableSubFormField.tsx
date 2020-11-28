@@ -52,8 +52,12 @@ export class RepeatableSubFormField extends FormField<
         {this.props.field.value.value.map((v, i) => (
           <React.Fragment key={i.toString()}>
             <button
+              disabled={this.props.field.readOnly}
+              aria-disabled={this.props.field.readOnly}
+              className={`govuk-button govuk-button--secondary ${
+                this.props.field.readOnly ? "govuk-button--disabled" : ""
+              }`}
               type="button"
-              className="govuk-button govuk-button--secondary"
               data-module="govuk-button"
               style={{ float: "right" }}
               onClick={(event): void => {
@@ -63,13 +67,19 @@ export class RepeatableSubFormField extends FormField<
             >
               Delete
             </button>
-            {v.value && <Form hooks={this.props.hooks} hideTitle form={v.value} />}
+            {v.value && (
+              <Form hooks={this.props.hooks} hideTitle form={v.value} />
+            )}
           </React.Fragment>
         ))}
 
         <button
+          disabled={this.props.field.readOnly}
+          aria-disabled={this.props.field.readOnly}
+          className={`govuk-button govuk-button--secondary ${
+            this.props.field.readOnly ? "govuk-button--disabled" : ""
+          }`}
           type="button"
-          className="govuk-button govuk-button--secondary"
           data-module="govuk-button"
           onClick={this.handleAddNewClickAsync}
         >

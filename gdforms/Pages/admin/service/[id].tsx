@@ -1,32 +1,45 @@
 import React from "react";
 import {observer, useStaticRendering} from "mobx-react"
 import { AdminPage } from "../../../shared/AdminPage";
-import { FormDesigner, FormModel } from "gdforms-components/dist/cjs/all";
+import { FormDesigner, IFormModelOptions, FormDesignerModel, IFormDesignerModelState } from "gdforms-components/dist/cjs/all";
 import { FormRecord, ServiceRecord } from "../../../db";
 import { IncomingMessage } from "http";
 import { observable } from "mobx";
 import { ApiClient } from "../../../shared/ApiClient";
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 
-
-interface IProps {
-  form: FormRecord
+interface ISSRProps {
+  type: "ssr";
+  result: {
+    type: "form",
+    options: IFormModelOptions,
+    state: IFormDesignerModelState
+  } | { type: "error", message: string};
 }
+
+type IProps = ISSRProps;
 
 @observer
 export default class ServicePage extends AdminPage<IProps> {
 
+  constructor(props: IProps) {
+    super(props);
+
+    if (props.result.type === "form"){
+      this.designer = FormDesignerModel.continueFromState(props.result.options, props.result.state);
+    }
+  }
  
 renderTitle() {
   return "Edit Service";
 }
 
 renderBody() {
-    return this.form ? <FormDesigner form={this.form} /> : <div>Loading...</div>;
+    return this.designer ? <FormDesigner designer={this.designer} /> : <div>Loading...</div>;
                         
 }
 
-@observable form: FormModel|undefined;
+@observable designer: FormDesignerModel|undefined;
 @observable error: string|undefined;
   
 static async loadService(id: string, context: HTMLDocument|IncomingMessage) : Promise<ServiceRecord> {
@@ -34,21 +47,7 @@ static async loadService(id: string, context: HTMLDocument|IncomingMessage) : Pr
   return await ApiClient.get<ServiceRecord>(`/api/service/${encodeURIComponent(id)}`, context);
 }
 
-async componentDidMount() {
-  
-    try {
-    const options =this.props.form.definition;
-    this.form = await FormModel.loadAsync(options, undefined, "")
-    } catch (e) {
-      if (e instanceof Error) {
-        this.error = e.message;
-      } else {
-        this.error = String(e)
-      }
-    }
-  }
 }
-
 
 export async function getServerSideProps(context: GetServerSidePropsContext<{id: string}>) :Promise<GetServerSidePropsResult<IProps>> {
   
@@ -60,6 +59,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{id:
     return {notFound: true};
   }
 
-  return {props: {form: service.form}}
+  const formDesigner = await FormDesignerModel.loadAsync(service.form.definition);
+  const initialState = formDesigner.getState();
+
+  debugger;
+  return {props: {type: "ssr", result:{type: "form", options: service.form.definition, state: initialState}}}
 }
 

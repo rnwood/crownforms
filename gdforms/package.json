@@ -15,6 +15,7 @@
     "@fluentui/react": "^7.153.2",
     "@fluentui/utilities": "^8.0.0-beta.0",
     "@next/bundle-analyzer": "^10.0.3",
+    "@uifabric/fluent-theme": "^7.3.46",
     "@zeit/next-source-maps": "^0.0.3",
     "core-js": "link:../gdforms-components/node_modules/core-js",
     "gdforms-components": "link:../gdforms-components",

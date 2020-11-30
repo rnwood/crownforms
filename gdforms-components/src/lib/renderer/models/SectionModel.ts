@@ -66,6 +66,14 @@ export class SectionModel extends FormComponent<
   ISectionModelOptions,
   ISectionModelState
 > {
+
+  @observable
+  readonly fields : FieldModel[] = [];
+
+  protected getChildContainers() {
+    return [this.fields];
+  }
+
   @computed
   get validationErrors(): ValidationErrorModel[] {
     let result = this.fields.flatMap((f) => f.validationErrors);
@@ -142,9 +150,9 @@ export class SectionModel extends FormComponent<
       await FormComponent.initWithChildrenAsync(newField);
 
       if (index !== undefined) {
-        this.insertChild(index, newField);
+        this.fields.splice(index, 0, newField);
       } else {
-        this.appendChildren(newField);
+        this.fields.push(newField);
       }
 
       return (newField as unknown) as T;
@@ -170,7 +178,7 @@ export class SectionModel extends FormComponent<
     );
 
     if (options) {
-      this.appendChildren(
+      this.fields.push(
         ...options.fields.map((f) =>
           SectionModel.createFieldFromOptions(
             this,

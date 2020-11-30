@@ -1,24 +1,13 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import { action, computed, observable } from "mobx";
-import { FormEvent } from "react";
-import {
-  Droppable,
-  DroppableProvided,
-  Draggable,
-  DraggableProvided,
-} from "react-beautiful-dnd";
 import { FormSection, IFormComponentProps, IFormSectionProps } from ".";
 import {
-  FieldModel,
-  IFieldModelOptions,
   FormModel,
   SectionModel,
-  TypedValue,
   ValidationErrorModel,
   ValidationErrorModelSeverity,
 } from "../models";
-import { IFormSectionFieldProps } from "./FormSectionField";
 
 interface IProps extends IFormComponentProps {
   form: FormModel;
@@ -54,7 +43,10 @@ export class Form extends React.Component<IProps> {
     this.form.currentSection?.validationErrors[0]?.component.focus();
   }
 
-  private handleNextSectionClick = (): void => {
+  private handleNextSectionClick = (
+    e: React.SyntheticEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    e.preventDefault();
     const newIndex =
       this.form.visibleSections.indexOf(this.form.currentSection!) + 1;
 
@@ -63,7 +55,10 @@ export class Form extends React.Component<IProps> {
     }
   };
 
-  private handleSubmitClick = (): void => {
+  private handleSubmitClick = (
+    e: React.SyntheticEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    e.preventDefault();
     this.form.currentSection!.validationEnabled = true;
     if (this.form.currentSection?.validationErrors.length == 0) {
       alert("Submit");
@@ -72,7 +67,10 @@ export class Form extends React.Component<IProps> {
     }
   };
 
-  private handlePrevSectionClick = () => {
+  private handlePrevSectionClick = (
+    e: React.SyntheticEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
     const newIndex =
       this.form.visibleSections.indexOf(this.form.currentSection!) - 1;
 
@@ -174,6 +172,7 @@ export class Form extends React.Component<IProps> {
         {this.form.currentSection &&
           this.form.visibleSections.indexOf(this.form.currentSection) > 0 && (
             <button
+              type="button"
               disabled={this.props.form.readOnly}
               aria-disabled={this.props.form.readOnly}
               className={`govuk-button govuk-button--secondary ${
@@ -190,6 +189,7 @@ export class Form extends React.Component<IProps> {
           this.form.visibleSections.length >
             this.form.visibleSections.indexOf(this.form.currentSection) + 1 && (
             <button
+              type="button"
               disabled={this.props.form.readOnly}
               aria-disabled={this.props.form.readOnly}
               className={`govuk-button ${
@@ -206,6 +206,7 @@ export class Form extends React.Component<IProps> {
           this.form.visibleSections.length ===
             this.form.visibleSections.indexOf(this.form.currentSection) + 1 && (
             <button
+              type="button"
               disabled={this.props.form.readOnly}
               aria-disabled={this.props.form.readOnly}
               className={`govuk-button ${

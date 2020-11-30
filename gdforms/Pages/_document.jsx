@@ -2,7 +2,6 @@ import * as React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
  import { Stylesheet, InjectionMode } from "@uifabric/merge-styles";
  import { resetIds } from "@uifabric/utilities";
- import { resetServerContext } from 'react-beautiful-dnd';
 
 // Do this in file scope to initialize the stylesheet before Fluent UI React components are imported.
 const stylesheet = Stylesheet.getInstance();
@@ -18,7 +17,6 @@ export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     stylesheet.reset();
     resetIds();
-    resetServerContext();
 
     const page = renderPage((App) => (props) => <App {...props} />);
 

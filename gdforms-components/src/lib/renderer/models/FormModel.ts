@@ -40,6 +40,18 @@ export class FormModel extends FormComponent<
   IFormModelOptions,
   IFormModelState
 > {
+
+  @observable
+  readonly sections : SectionModel[] = [];
+
+  
+  @observable
+  readonly lookups : LookupModel[] = [];
+
+  protected getChildContainers() {
+    return [this.sections, this.lookups];
+  }
+
   @observable
   currentSection: SectionModel | undefined;
 
@@ -59,7 +71,7 @@ export class FormModel extends FormComponent<
     this.queryString = state?.queryString ?? queryString;
     this.forceReadOnly = state?.forceReadOnly ?? false;
 
-    this.appendChildren(
+    this.sections.push(
       ...this.options.sections.map(
         (s) =>
           new SectionModel(
@@ -72,7 +84,7 @@ export class FormModel extends FormComponent<
     [this.currentSection] = this.sections;
 
     if (this.options.lookups) {
-      this.appendChildren(
+      this.lookups.push(
         ...this.options.lookups.map(
           (l) =>
             new LookupModel(
@@ -286,12 +298,6 @@ export class FormModel extends FormComponent<
 
   @computed get visibleSections(): SectionModel[] {
     return this.sections.filter((f) => f.visible);
-  }
-
-  @computed get lookups(): LookupModel[] {
-    return this.children.filter(
-      (f): f is LookupModel => f instanceof LookupModel
-    );
   }
 
   getLookup(name: string): LookupModel | undefined {

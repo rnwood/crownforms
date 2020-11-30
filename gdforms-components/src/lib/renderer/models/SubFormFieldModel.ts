@@ -77,9 +77,12 @@ export class SubFormFieldModel extends FieldModel<
     }
   }
 
+  protected getChildContainers() {
+    return[[this.value.value!]];
+  }
+
   protected async postInitComponentAsync(): Promise<void> {
     await super.postInitComponentAsync();
-    this.appendChildren(this.value.value!);
     this.valueIsDefault = false;
   }
 
@@ -87,7 +90,7 @@ export class SubFormFieldModel extends FieldModel<
     IFormComponentOptions,
     IFormComponentState
   >[] {
-    return this.children.flatMap((c) => c.children).flatMap((c) => c.children);
+    return this.allChildren.flatMap((c) => c.allChildren).flatMap((c) => c.allChildren);
   }
 
   protected async getDefaultValueAsync(): Promise<SubFormValue> {

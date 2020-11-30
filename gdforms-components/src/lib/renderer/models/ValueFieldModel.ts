@@ -17,6 +17,10 @@ export abstract class ValueFieldModel<T extends TypedValue, TOptions extends IFi
     }
   }
 
+  protected getChildContainers() {
+    return[];
+  }
+
   readonly initialState : IFieldModelState|undefined;
 
   readonly valueType: IJsonableValueConverter<T>;

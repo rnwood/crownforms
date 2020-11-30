@@ -21,6 +21,10 @@ export class LookupButtonModel extends FieldModel<VoidValue, ILookupButtonOption
     }
   }
 
+  protected getChildContainers() {
+    return[];
+  }
+
   protected getDefaultValueFromText(text: StringValue): VoidValue {
     throw new Error('Method not implemented.');
   }

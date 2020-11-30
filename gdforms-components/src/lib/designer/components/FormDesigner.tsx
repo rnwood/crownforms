@@ -87,7 +87,7 @@ export class FormDesigner extends React.Component<IProps> {
       const target = this.designer.form.getComponentById(targetComponentId);
 
       if (source && target) {
-        const item = source.fields[result.source.index];
+        const item = source.allChildren[result.source.index];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
         const itemConstructor = (item as any)
           .constructor as FormComponentConstructor<
@@ -96,7 +96,7 @@ export class FormDesigner extends React.Component<IProps> {
         >;
 
         if (item && target.canInsert(itemConstructor)) {
-          source.removeChild(item);
+          //source.allChildren(item);
           this.designer.selectedComponent = await target.insertAsync(
             itemConstructor,
             result.destination.index,

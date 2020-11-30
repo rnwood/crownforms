@@ -2,7 +2,7 @@ import React from "react";
 import {observer, useStaticRendering} from "mobx-react"
 import { AdminPage } from "../../../shared/AdminPage";
 import { FormDesigner, IFormModelOptions, FormDesignerModel, IFormDesignerModelState } from "gdforms-components/dist/cjs/all";
-import { FormRecord, ServiceRecord } from "../../../db";
+import { ServiceRecord } from "../../../db";
 import { IncomingMessage } from "http";
 import { observable } from "mobx";
 import { ApiClient } from "../../../shared/ApiClient";

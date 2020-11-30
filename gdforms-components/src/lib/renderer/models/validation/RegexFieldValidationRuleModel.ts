@@ -17,15 +17,17 @@ export class RegexFieldValidationRuleModel extends FieldValidationRuleModel<
 
 
 
-  validate(
-    field: FieldModel<TypedValue, IFieldModelOptions>,
-    form: FormModel
+  validateFieldValue(
+    value: TypedValue,
+    {form, field} : {form: FormModel, field: FieldModel}
   ): string | null {
-    let stringValue = StringValue.convertFrom(field.value.value).value ?? "";
+    let stringValue = StringValue.convertFrom(value.value).value ?? "";
 
     if (!new RegExp(this.options.regex, "gim").test(stringValue)) {
+      console.log(`${stringValue} does not match ${this.options.regex}`)
       return this.options.errorMessage ?? this.getDefaultErrorMessage(field);
     }
+    console.log(`${stringValue} matches ${this.options.regex}`)
     return null;
   }
 }

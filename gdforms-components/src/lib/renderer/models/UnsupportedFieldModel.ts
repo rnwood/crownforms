@@ -21,6 +21,10 @@ export class UnsupportedFieldModel extends FieldModel<
   VoidValue,
   IUnsupportedFieldModelOptions
 > {
+  protected getChildContainers() {
+    return[];
+  }
+
   getState(): IFieldModelState {
     return {
       id: this.id,

@@ -28,6 +28,11 @@ export class AutoLookupModel extends FieldModel<
   IAutoLookupOptions,
   IAutoLookupState
 > {
+
+  protected getChildContainers() {
+    return[];
+  }
+
   getState(): IAutoLookupState {
     return {
       id: this.id,

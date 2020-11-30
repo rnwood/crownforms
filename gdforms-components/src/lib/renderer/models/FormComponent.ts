@@ -27,8 +27,8 @@ export interface IFormComponentState
 }
 
 export abstract class FormComponent<
-  TOptions extends IFormComponentOptions,
-  TState extends IFormComponentState
+  TOptions extends IFormComponentOptions = IFormComponentOptions,
+  TState extends IFormComponentState = IFormComponentState
 > {
   constructor(
     parent:
@@ -55,7 +55,7 @@ export abstract class FormComponent<
     await component.initComponentAsync();
 
     await Promise.all(
-      component.children.map(c=>FormComponent.initWithChildrenAsync(c, false))
+      component.allChildren.map(c=>FormComponent.initWithChildrenAsync(c, false))
     )
     
     if (isTopLevelBeingInited) {
@@ -69,7 +69,7 @@ export abstract class FormComponent<
     await component.postInitComponentAsync();
     
     await Promise.all(
-      component.children.map(c=>FormComponent.postInitWithChildrenAsync(c))
+      component.allChildren.map(c=>FormComponent.postInitWithChildrenAsync(c))
     )
   }
 
@@ -86,7 +86,7 @@ export abstract class FormComponent<
       return this;
     }
 
-    for (let child of this.children) {
+    for (let child of this.allChildren) {
       let childResult = child.getComponentByIdInternal(id);
       if (childResult) {
         return childResult;
@@ -153,38 +153,15 @@ export abstract class FormComponent<
     ...params: unknown[]
   ): Promise<T>;
 
-  @observable
-  private internalChildren: FormComponent<
-    IFormComponentOptions,
-    IFormComponentState
-  >[] = [];
-
-  removeChild(
-    item: FormComponent<IFormComponentOptions, IFormComponentState>
-  ): void {
-    this.internalChildren.splice(this.internalChildren.indexOf(item), 1);
-  }
-
-  appendChildren(
-    ...components: FormComponent<IFormComponentOptions, IFormComponentState>[]
-  ): void {
-    this.internalChildren.push(...components);
-  }
-
-  insertChild(
-    index: number,
-    component: FormComponent<IFormComponentOptions, IFormComponentState>
-  ): void {
-    this.internalChildren.splice(index, 0, component);
-  }
-
   @computed
-  get children(): readonly FormComponent<
+  get allChildren(): readonly FormComponent<
     IFormComponentOptions,
     IFormComponentState
   >[] {
-    return this.internalChildren;
+    return this.getChildContainers().flatMap((c : FormComponent[]) => c);
   }
+
+  protected abstract getChildContainers() : FormComponent[][];
 
   @computed
   get designerChildren(): readonly FormComponent<
@@ -198,25 +175,7 @@ export abstract class FormComponent<
     IFormComponentOptions,
     IFormComponentState
   >[] {
-    return this.children;
-  }
-
-  @computed
-  get sections(): readonly SectionModel[] {
-    return this.internalChildren.filter(
-      (c): c is SectionModel => c instanceof SectionModel
-    );
-  }
-
-  @computed
-  get fields(): readonly FieldModel<
-    TypedValue,
-    IFieldModelOptions
-  >[] {
-    return this.internalChildren.filter(
-      (c): c is FieldModel<TypedValue, IFieldModelOptions> =>
-        c instanceof FieldModel
-    );
+    return this.allChildren;
   }
 
   @computed
@@ -235,7 +194,7 @@ export abstract class FormComponent<
   @computed get allTasksInProgress(): readonly ITaskModel[] {
     let result = [...this.tasksInProgress];
 
-    for (let child of this.children) {
+    for (let child of this.allChildren) {
       result.push(...child.allTasksInProgress);
     }
 

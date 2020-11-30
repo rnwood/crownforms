@@ -32,6 +32,11 @@ export class RepeatableSubFormFieldModel extends FieldModel<
   IRepeatableSubFormFieldOptions,
   IRepeatableSubFormFieldState
 > {
+
+  protected getChildContainers() {
+    return [this.value.value!.map(v => v.value!)];
+  }
+
   getState(): IRepeatableSubFormFieldState {
     return {
       id: this.id,
@@ -121,6 +126,6 @@ export class RepeatableSubFormFieldModel extends FieldModel<
     IFormComponentOptions,
     IFormComponentState
   >[] {
-    return this.children.flatMap((c) => c.children).flatMap((c) => c.children);
+    return this.allChildren.flatMap((c) => c.allChildren).flatMap((c) => c.allChildren);
   }
 }

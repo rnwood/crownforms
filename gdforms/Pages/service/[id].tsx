@@ -49,7 +49,7 @@ export default class ServicePage extends PublicPage<IProps> {
     if (this.props.type === "csr") {
       try {
       const options = await (await ServicePage.loadService(this.props.id, document)).form!.definition;
-      this.form = await FormModel.loadAsync(options, undefined, document.location.search)
+      this.form = await FormModel.loadAsync({options, queryString: document.location.search})
       } catch (e) {
         if (e instanceof Error) {
           this.error = e.message;
@@ -114,7 +114,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{id:
     const options = await (await ServicePage.loadService(id, context.req)).form!.definition;
 
     const queryString = url.search;
-    const form = await FormModel.loadAsync(options, undefined, queryString);
+    const form = await FormModel.loadAsync({options, queryString});
     const state = form.getState();
 
     return {props: { type:"ssr", result: {type:"form", options: options, state:state}}}

@@ -59,6 +59,10 @@ export class LookupModel extends FormComponent<
     this.results = state?.results?.map(r => new LookupResult(r))
     }
 
+    protected getChildContainers() {
+      return[];
+    }
+
   getState(): ILookupModelState {
     return {
       id: this.id,

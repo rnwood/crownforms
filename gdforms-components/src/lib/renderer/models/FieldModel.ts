@@ -22,7 +22,7 @@ import {
   IFormComponentState,
   IOptions,
 } from ".";
-import { ValidationErrorModelSeverity } from './ValidationErrorModel';
+import { ValidationErrorModelSeverity } from "./ValidationErrorModel";
 
 export interface IFieldModelOptions extends IFormComponentOptions {
   readonly type: string;
@@ -42,8 +42,8 @@ export interface IFieldModelOptions extends IFormComponentOptions {
   valueType: string;
   controlType: string;
   validationRules?: IFieldValidationRuleModelOptions[];
-  readOnly?: boolean|null;
-  readOnlyCondition?: string|null; 
+  readOnly?: boolean | null;
+  readOnlyCondition?: string | null;
 }
 
 export interface IFieldModelState extends IFormComponentState {
@@ -58,8 +58,8 @@ export interface IFieldModelState extends IFormComponentState {
 }
 
 export abstract class FieldModel<
-  T extends TypedValue,
-  TOptions extends IFieldModelOptions,
+  T extends TypedValue = TypedValue,
+  TOptions extends IFieldModelOptions = IFieldModelOptions,
   TState extends IFieldModelState = IFieldModelState
 > extends FormComponent<TOptions, TState> {
   protected abstract getDefaultValueFromText(text: StringValue): T;
@@ -210,17 +210,16 @@ export abstract class FieldModel<
   }
 
   @computed private get readOnlyCondition():
-  | Expression<BooleanValue>
-  | undefined {
-  return this.options.readOnlyCondition
-    ? FFConditionParser.parseBooleanExpression(this.options.readOnlyCondition)
-    : undefined;
-}
+    | Expression<BooleanValue>
+    | undefined {
+    return this.options.readOnlyCondition
+      ? FFConditionParser.parseBooleanExpression(this.options.readOnlyCondition)
+      : undefined;
+  }
 
   protected abstract async getDefaultValueAsync(): Promise<T>;
 
-  @computed get readOnly() : boolean {
-
+  @computed get readOnly(): boolean {
     if (this.parentSection?.readOnly) {
       return true;
     }
@@ -326,22 +325,22 @@ export abstract class FieldModel<
   }
 
   @computed
-  get validationErrors(): ValidationErrorModel[] {
-    let newResults = this.validateFieldAlways;
-    if (newResults.length) {
-      return newResults;
+  get validationErrors(): readonly ValidationErrorModel[] {
+    const results1 = this.validateFieldAlways;
+    if (results1.length) {
+      return results1;
     }
 
     if (!this.visible) {
       return [];
     }
 
-    newResults = this.controls
+    const results2 = this.controls
       .map((c: IFieldModelControl) => c.controlValueError)
       .filter((e) => e !== null)
       .map<ValidationErrorModel>((e) => <ValidationErrorModel>e);
-    if (newResults.length) {
-      return newResults;
+    if (results2.length > 0) {
+      return results2;
     }
 
     if (!this.parentSection?.validationEnabled) {
@@ -359,9 +358,10 @@ export abstract class FieldModel<
       ];
     }
 
-    newResults = this.validateField;
-    if (newResults.length) {
-      return newResults;
+    const results3 = this.validateField;
+    if (results3.length > 0) {
+      console.log(`Validate ${this.value.value}: ${results3.length}`);
+      return results3;
     }
 
     for (const v of this.validationRules ?? []) {
@@ -369,15 +369,24 @@ export abstract class FieldModel<
         ? v.validate(this, this.parentForm)
         : undefined;
       if (errorMessage) {
-        newResults.push(new ValidationErrorModel(this, errorMessage, ValidationErrorModelSeverity.Correctable));
-        break;
+        return [
+          new ValidationErrorModel(
+            this,
+            errorMessage,
+            ValidationErrorModelSeverity.Correctable
+          ),
+        ];
       }
     }
 
-    return newResults;
+    return [];
   }
 
-  @computed private get validationRules() : FieldValidationRuleModel<IFieldValidationRuleModelOptions>[] {
-    return (this.options.validationRules ?? []).map(r => FieldValidationRuleModel.create(r));
+  @computed private get validationRules(): FieldValidationRuleModel<
+    IFieldValidationRuleModelOptions
+  >[] {
+    return (this.options.validationRules ?? []).map((r) =>
+      FieldValidationRuleModel.create(r)
+    );
   }
 }

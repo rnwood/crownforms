@@ -69,7 +69,7 @@ export class DesignerFormSectionField extends Component<IProps> {
       <Draggable
         key={this.props.field.id}
         draggableId={`${this.props.field.id}`}
-        index={this.props.field.parent?.children.indexOf(this.props.field) ?? 0}
+        index={this.props.index}
       >
         {(provided, snapshot) => (
           <div

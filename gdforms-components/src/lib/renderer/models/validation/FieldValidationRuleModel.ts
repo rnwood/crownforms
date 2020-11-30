@@ -1,5 +1,5 @@
 import { ValidationRuleModel, ExpressionFieldValidationRuleModel, IValidationRuleModelOptions, IExpressionFieldValidationRuleModelOptions, RegexFieldValidationRuleModel, IRegexFieldValidationRuleModelOptions } from '.';
-import { FieldModel, IFieldModelOptions, TypedValue } from '..';
+import { FieldModel, FormModel, IFieldModelOptions, TypedValue } from '..';
 
 export interface IFieldValidationRuleModelOptions extends IValidationRuleModelOptions {
 
@@ -7,6 +7,20 @@ export interface IFieldValidationRuleModelOptions extends IValidationRuleModelOp
 
 export abstract class FieldValidationRuleModel<TOptions extends IFieldValidationRuleModelOptions> extends ValidationRuleModel<TOptions, FieldModel<TypedValue, IFieldModelOptions>> {
   
+  private lastResult: string|null|undefined;
+  private lastInputValue: TypedValue|undefined;
+
+  validate(
+    field: FieldModel<TypedValue, IFieldModelOptions>,
+    form: FormModel
+  ): string | null {
+    this.lastInputValue = field.value;
+    this.lastResult  = this.validateFieldValue(this.lastInputValue, {form, field});
+    return this.lastResult;
+  }
+
+  protected abstract validateFieldValue(value: TypedValue, {form, field} : {form: FormModel, field:FieldModel}) : string|null;
+
   protected getDefaultErrorMessage(field: FieldModel<TypedValue, IFieldModelOptions>): string {
     return `${field.options.displayName} is invalid`
   }

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import {Db, ServiceRecord} from '../../../db';
+import { PrismaClient } from '@prisma/client'
 export default async function handler(req :NextApiRequest, res: NextApiResponse) {
   const {
     method,
@@ -9,9 +9,8 @@ export default async function handler(req :NextApiRequest, res: NextApiResponse)
     case 'GET':
       
 
-      const db = await Db.get();
-
-      const services = await db.find(ServiceRecord);
+      const db = new PrismaClient();
+      const services = await db.service.findMany();
 
       res.status(200).json(services)
       break

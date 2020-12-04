@@ -1,13 +1,13 @@
+import { Service } from "@prisma/client";
 import { useStaticRendering } from "mobx-react";
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import React from "react";
-import { ServiceRecord } from "../db";
 import { ApiClient } from "../shared/ApiClient";
 import { PublicPage } from "../shared/PublicPage";
 
 
 interface IProps  {
-  services: ServiceRecord[];
+  services: Service[];
 }
 
 export default class ServiceIndexPage extends PublicPage<IProps> {
@@ -34,7 +34,7 @@ export default class ServiceIndexPage extends PublicPage<IProps> {
   
     useStaticRendering(true);
 
-    const services = await ApiClient.get<ServiceRecord[]>("/api/service", context.req);
+    const services = await ApiClient.get<Service[]>("/api/service", context.req);
     return {props:{services}};
   
 }

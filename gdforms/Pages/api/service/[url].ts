@@ -1,16 +1,17 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import {Db, ServiceRecord} from '../../../db';
+import { PrismaClient } from '@prisma/client'
+
 export default async function handler(req :NextApiRequest, res: NextApiResponse) {
   const {
-    query: { id },
+    query: {url },
     method,
   } = req;
 
   switch (method) {
     case 'GET':
       
-      const db = await Db.get();
-      const service = await db.findOne(ServiceRecord, {where: {url: id}, relations: ["form"]});
+      const db = new PrismaClient();
+      const service = await db.service.findFirst({where: {url: url as string}, include: {form: true}})
 
       if (!service) {
         res.status(404).json({error: "Not found"});

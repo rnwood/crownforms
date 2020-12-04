@@ -18,7 +18,7 @@ spec:
       - name: "{{ .Chart.Name }}-init"
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        command: ['/bin/sh', '-c', 'cd .initdb; npx typeorm migration:run']
+        command: ['/bin/sh', '-c', 'npx prisma migrate up --auto-approve --experimental']
         env:
         - name: GDFORMS_DATABASEURL
           value: "postgresql://postgres:password@{{ .Chart.Name }}-postgres-pgpool/postgres"

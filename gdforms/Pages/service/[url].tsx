@@ -10,8 +10,8 @@ import {observable} from "mobx"
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import { IncomingMessage } from "http";
 import { PublicPage } from "../../shared/PublicPage";
-import { ServiceRecord } from "../../db";
 import { ApiClient, NotFoundError } from "../../shared/ApiClient";
+import { Service, Form as FormRecord } from "@prisma/client";
 
 interface ISSRProps {
   type: "ssr";
@@ -24,7 +24,7 @@ interface ISSRProps {
 
 interface ICSRProps {
   type: "csr";
-  id: string;
+  url: string;
 }
 type IProps = ISSRProps|ICSRProps;
 
@@ -48,7 +48,7 @@ export default class ServicePage extends PublicPage<IProps> {
   async componentDidMount() {
     if (this.props.type === "csr") {
       try {
-      const options = await (await ServicePage.loadService(this.props.id, document)).form!.definition;
+      const options = await (await ServicePage.loadService(this.props.url, document)).form!.definition as IFormModelOptions;
       this.form = await FormModel.loadAsync({options, queryString: document.location.search})
       } catch (e) {
         if (e instanceof Error) {
@@ -90,31 +90,32 @@ renderBody() {
  }
 
   
-  static async loadService(id: string, context: HTMLDocument|IncomingMessage) : Promise<ServiceRecord> {
+  static async loadService(url: string, context: HTMLDocument|IncomingMessage) : Promise<Service & {form: FormRecord}> {
     
-    return await ApiClient.get<ServiceRecord>(`/api/service/${encodeURIComponent(id)}`, context);
+    return await ApiClient.get<Service & {form: FormRecord}>(`/api/service/${encodeURIComponent(url)}`, context);
   }
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext<{id: string}>) :Promise<GetServerSidePropsResult<IProps>> {
+export async function getServerSideProps(context: GetServerSidePropsContext<{url: string}>) :Promise<GetServerSidePropsResult<IProps>> {
   
   useStaticRendering(true);
 
-  const id = context?.params?.id;
+  const url = context?.params?.url;
 
-  if (!id) {
+  if (!url) {
     context.res.statusCode = 404
     return {props: { type:"ssr", result: {type: "error", message:"Bad request - missing id" }}};
   }
 
-  let url = new URL(context.req.url!, "http://base.com");
+  let requestUrl = new URL(context.req.url!, "http://base.com");
 
-  if (!url.searchParams.get("nossr")) {
+  if (!requestUrl.searchParams.get("nossr")) {
     try {
-    const options = await (await ServicePage.loadService(id, context.req)).form!.definition;
+    const service  = await ServicePage.loadService(url, context.req);
+    const options = service.form.definition as IFormModelOptions;
 
-    const queryString = url.search;
-    const form = await FormModel.loadAsync({options, queryString});
+    const queryString = requestUrl.search;
+    const form = await FormModel.loadAsync({options: options, queryString: queryString});
     const state = form.getState();
 
     return {props: { type:"ssr", result: {type:"form", options: options, state:state}}}
@@ -126,7 +127,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{id:
       }
     }
   } else {
-    return {props: { type:"csr", id }}
+    return {props: { type:"csr", url: url }}
   }
 }
 

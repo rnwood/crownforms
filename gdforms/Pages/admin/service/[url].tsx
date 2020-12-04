@@ -2,11 +2,11 @@ import React from "react";
 import {observer, useStaticRendering} from "mobx-react"
 import { AdminPage } from "../../../shared/AdminPage";
 import { FormDesigner, IFormModelOptions, FormDesignerModel, IFormDesignerModelState } from "gdforms-components/dist/cjs/all";
-import { ServiceRecord } from "../../../db";
 import { IncomingMessage } from "http";
 import { observable } from "mobx";
 import { ApiClient } from "../../../shared/ApiClient";
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
+import { Service, Form } from '@prisma/client'
 
 interface ISSRProps {
   type: "ssr";
@@ -42,27 +42,26 @@ renderBody() {
 @observable designer: FormDesignerModel|undefined;
 @observable error: string|undefined;
   
-static async loadService(id: string, context: HTMLDocument|IncomingMessage) : Promise<ServiceRecord> {
+static async loadService(url: string, context: HTMLDocument|IncomingMessage) : Promise<Service & {form: Form}> {
     
-  return await ApiClient.get<ServiceRecord>(`/api/service/${encodeURIComponent(id)}`, context);
+  return await ApiClient.get<Service & {form: Form}>(`/api/service/${encodeURIComponent(url)}`, context);
 }
 
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext<{id: string}>) :Promise<GetServerSidePropsResult<IProps>> {
+export async function getServerSideProps(context: GetServerSidePropsContext<{url: string}>) :Promise<GetServerSidePropsResult<IProps>> {
   
   useStaticRendering(true);
 
-  const service = await (await ServicePage.loadService(context.params!.id, context.req));
+  const service = await (await ServicePage.loadService(context.params!.url, context.req));
 
   if (!service || !service.form) {
     return {notFound: true};
   }
 
-  const formDesigner = await FormDesignerModel.loadAsync(service.form.definition);
+  const formDesigner = await FormDesignerModel.loadAsync(service.form.definition as IFormModelOptions);
   const initialState = formDesigner.getState();
 
-  debugger;
-  return {props: {type: "ssr", result:{type: "form", options: service.form.definition, state: initialState}}}
+  return {props: {type: "ssr", result:{type: "form", options: service.form.definition as IFormModelOptions, state: initialState}}}
 }
 

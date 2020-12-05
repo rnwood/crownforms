@@ -1,7 +1,6 @@
 import React, { ChangeEvent } from "react";
 import {observer} from "mobx-react"
 import { AdminPage } from "../../../shared/AdminPage";
-import { PrimaryButton, Stack } from "@fluentui/react";
 import { observable } from "mobx";
 import { ApiClient } from "../../../shared/ApiClient";
 import { Router, withRouter } from "next/router";
@@ -45,10 +44,10 @@ onSubmit = async () => {
 
 renderBody() {
                     return                           <form>
-                                <Stack>
+     
                                <input type="file" accept="application/json" ref={this.fileInputRef} onChange={this.onChangeFileInput} />
-                               <PrimaryButton text="Convert" disabled={this.files?.length !== 1} onClick={this.onSubmit}/>
-                               </Stack>
+                               <button disabled={this.files?.length !== 1} onClick={this.onSubmit}>Convert</button>
+
 
                              </form>
                         

@@ -1192,15 +1192,6 @@
     "@uifabric/set-version" "^7.0.23"
     tslib "^1.10.0"
 
-"@fluentui/react@^7.153.2":
-  version "7.153.2"
-  resolved "https://registry.yarnpkg.com/@fluentui/react/-/react-7.153.2.tgz#5fa21aefc415fa3d2cdaffa7f9ab5aa2b97cb17a"
-  integrity sha512-8D/zFzv9WaHqX5qu5oT20rjxkKf3GMhc40AOK+wloIfqzGe/OOXpg2zr0Hz+OXEijkGU7UPsjZ6uys/UAcXERQ==
-  dependencies:
-    "@uifabric/set-version" "^7.0.23"
-    office-ui-fabric-react "^7.153.2"
-    tslib "^1.10.0"
-
 "@fluentui/set-version@^8.0.0-beta.0":
   version "8.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/@fluentui/set-version/-/set-version-8.0.0-beta.0.tgz#6e58a5c081b217aee526424a7d7a1561cb8fa5e9"
@@ -2631,8 +2622,9 @@ core-js-compat@^3.6.2:
     semver "7.0.0"
 
 core-js@^3.7.0:
-  version "0.0.0"
-  uid ""
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.8.0.tgz#0fc2d4941cadf80538b030648bb64d230b4da0ce"
+  integrity sha512-W2VYNB0nwQQE7tKS7HzXd7r2y/y2SVJl4ga6oH/dnaLFzM0o2lB2P3zCkWj5Wc/zyMYjtgd5Hmhk0ObkQFZOIA==
 
 "core-js@link:../gdforms-components/node_modules/core-js":
   version "0.0.0"

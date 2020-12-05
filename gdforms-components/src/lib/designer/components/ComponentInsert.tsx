@@ -9,7 +9,6 @@ import {
 
 import { action } from "mobx";
 import { observer } from "mobx-react";
-import { Icon } from "@fluentui/react";
 import {
   FormComponent,
   FormComponentConstructor,
@@ -74,7 +73,6 @@ export class ComponentInsert extends React.Component<{
                         this.insertAsync(t);
                       }}
                     >
-                      <Icon iconName="TextField" />
                       {
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                         t.designerToolboxLabel

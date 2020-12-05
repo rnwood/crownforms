@@ -16,6 +16,20 @@
       "preLaunchTask": "bridge-to-kubernetes.service"
     },
     {
+      "type": "node",
+      "request": "launch",
+      "name": "Server (START): Bridge to Kubernetes",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/next",
+      "args": ["start"],
+      "env": {
+        "NODE_OPTIONS": "--inspect"
+      },
+      "port": 9229,
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "preLaunchTask": "bridge-to-kubernetes.service"
+    },
+    {
       "type": "chrome",
       "request": "launch",
       "name": "Client: Chrome",

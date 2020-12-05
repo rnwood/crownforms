@@ -50,29 +50,39 @@ The designer is currently the next priority.
 
 ## Development ##
 
-1) **Get access to a Kubernetes cluste and make sure you have [Helm](https://helm.sh/) installed**
+- **Make sure you have the tools needed:**
+  - Access to a Kubernetes cluster. You can use [MiniKube](https://minikube.sigs.k8s.io/docs/) locally to run this on any OS. Run `minikube start` once installed to get up and running.
+  - [Helm](https://helm.sh/)**
 
-> You can use [MiniKube](https://minikube.sigs.k8s.io/docs/) locally to run this on any OS. Run `minikube start` once installed to get up and running.
 
-2) **Point your local Docker client at the Docker service in the cluster.**
+- **Point your local Docker client at the Docker service in the cluster.**
+For MiniKube run `minikube docker-env` and read the instructions. 
 
-> For MiniKube run `minikube docker-env` and read the instructions. 
-
-3) **Build the initial container image for the app:**
+- **Build the initial container image for the app:**
 ```
 docker build -t gdforms .
 ```
 
-4) **Deploy the full stack:**
+- **Deploy the full stack:**
 ```
 helm install --set image.repository=gdforms --set image.tag=latest gdforms .\charts\gdforms\
 ```
 
-5) **Wait for the deployment to complete and for init to run**
+- **Wait for the deployment to complete and for init to run**
 
 > MiniKube: You can view the status in the dashbord by running `minikube dashboard`
 
-6) **Start debugging the app in VSCode using the provided targets.**
+- **Fetch the dependencies locally for debugging**
+```
+cd gdforms-component
+yarn install
+cd ..\gdforms
+yarn install
+```
+
+- **Start debugging the app in VSCode using the provided targets.**
 This uses [Bridge to Kubernetes](https://devblogs.microsoft.com/visualstudio/bridge-to-kubernetes-ga/)
 
-7) **You can access at [http://localhost:3000](http://localhost:3000)** The framework we build on support hot-reload, so you can just save changes and they will be visible automatically.
+- **You can access at [http://localhost:3000](http://localhost:3000)**
+- 
+-  The framework we build on supports hot-reload, so you can just save changes and they will be visible automatically.

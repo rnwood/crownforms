@@ -1,11 +1,4 @@
 import * as React from "react";
-import {
-  Stack,
-  ScrollablePane,
-  Pivot,
-  PivotItem,
-  CommandBar,
-} from "@fluentui/react";
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
@@ -28,7 +21,6 @@ import {
   ComponentTree,
   ComponentProperties,
   ComponentInsert,
-  IconsSetup,
   DesignerFormSectionField,
   DesignerFormSection,
 } from ".";
@@ -42,10 +34,7 @@ interface IProps {
 export class FormDesigner extends React.Component<IProps> {
   constructor(props: IProps) {
     super(props);
-
-
     this.designer = this.props.designer;
-    IconsSetup.setup();
   }
 
   @observable
@@ -123,42 +112,33 @@ export class FormDesigner extends React.Component<IProps> {
     return (
       <div style={{ minHeight: "600px", height: "100%", width: "100%" }}>
         <DragDropContext onDragEnd={this.onDragEndAsync}>
-          <Stack style={{ height: "100%", width: "100%" }}>
-            <Stack.Item
-              styles={{ root: { borderBottom: "1px solid lightgray" } }}
+          <div style={{ height: "100%", width: "100%" }}>
+            <div
+              style={{ borderBottom: "1px solid lightgray" } }
             >
-              <CommandBar items={[]} />
-            </Stack.Item>
-            <Stack.Item grow>
-              <Stack
-                horizontal
-                verticalFill
-                tokens={{ maxHeight: "100%" }}
+            </div>
+            <div>
+              <div
                 style={{ height: "100%" }}
               >
-                <Stack.Item
-                  styles={{ root: { borderRight: "1px solid lightgray" } }}
+                <div
+                  style={{ borderRight: "1px solid lightgray" } }
                 >
                   <div
                     style={{ width: 300, height: "100%", position: "relative" }}
                   >
-                    <ScrollablePane scrollbarVisibility="auto">
                       <div>
-                        <Pivot>
-                          <PivotItem headerText="Browse" itemIcon="List">
+
                             <ComponentTree designer={this.designer} />
-                          </PivotItem>
-                          <PivotItem headerText="Insert" itemIcon="Add">
+                       
                             <ComponentInsert designer={this.designer} />
-                          </PivotItem>
-                        </Pivot>
+                         
                       </div>
-                    </ScrollablePane>
                   </div>
-                </Stack.Item>
-                <Stack.Item grow>
+                </div>
+                <div>
                   <div style={{ height: "100%", position: "relative" }}>
-                    <ScrollablePane scrollbarVisibility="auto">
+  
                       <div style={{ padding: "12px" }}>
                         <div className="govuk-width-container">
                           <main className="govuk-main-wrapper">
@@ -174,25 +154,22 @@ export class FormDesigner extends React.Component<IProps> {
                           </main>
                         </div>
                       </div>
-                    </ScrollablePane>
                   </div>
-                </Stack.Item>
-                <Stack.Item
-                  styles={{ root: { borderLeft: "1px solid lightgray" } }}
+                </div>
+                <div
+                  style={ { borderLeft: "1px solid lightgray" } }
                 >
                   <div
                     style={{ width: 300, height: "100%", position: "relative" }}
                   >
-                    <ScrollablePane scrollbarVisibility="auto">
                       <div style={{ padding: "12px" }}>
                         <ComponentProperties designer={this.designer} />
                       </div>
-                    </ScrollablePane>
                   </div>
-                </Stack.Item>
-              </Stack>
-            </Stack.Item>
-          </Stack>
+                </div>
+              </div>
+            </div>
+          </div>
         </DragDropContext>
       </div>
     );

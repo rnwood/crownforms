@@ -37,7 +37,6 @@
     "xpath": "^0.0.32"
   },
   "peerDependencies": {
-    "@fluentui/react": "^7.147.1",
     "core-js": "^3.7.0",
     "govuk-frontend": "^3.9.1",
     "inter-ui": "^3.15.0",
@@ -56,7 +55,6 @@
     "@babel/plugin-proposal-optional-chaining": "^7.11.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.12.1",
-    "@fluentui/react": "^7.147.1",
     "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-node-resolve": "^9.0.0",

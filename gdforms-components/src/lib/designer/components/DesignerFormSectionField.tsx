@@ -1,7 +1,6 @@
 import { FieldModel, FormComponent, FormSectionField, IFieldModelOptions, IFormComponentOptions, IFormComponentState, IFormSectionFieldProps, TypedValue } from '../../renderer';
 import React, { Component, SyntheticEvent } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-import { Icon } from '@fluentui/react';
 import { FormDesignerModel } from '../models';
 import { observer } from 'mobx-react';
 
@@ -40,7 +39,7 @@ export class DesignerFormSectionField extends Component<IProps> {
               {"}"}
           </div>
           {this.props.field.options.hide && <div style={this.designerOverlayStyle}>Hidden</div>}
-          {this.props.field.options.displayCondition && <div style={this.designerOverlayStyle} title={this.props.field.options.displayCondition}><Icon  iconName="Visibility"/> {this.props.field.options.displayCondition}</div>}
+          {this.props.field.options.displayCondition && <div style={this.designerOverlayStyle} title={this.props.field.options.displayCondition}>{this.props.field.options.displayCondition}</div>}
         </div>
         <div style={{ clear: "both" }} />
       </div>

@@ -1,4 +1,4 @@
-![gdforms](./logo.svg)
+![crownforms](./logo.svg)
 
 **A low-code e-forms renderer and designer aiming to conform to the UK Government GDS Design System.** Includes Granicus/Firmstep Forms import to allow migration of existing services and the skills of existing form authors.
 
@@ -12,7 +12,7 @@
 
 ## Objectives ##
 
-gdforms aims to be:
+crownforms aims to be:
 
 - An easy to use but powerful low-code e-forms package so that processes can be developed in an agile manner and with low effort.
 
@@ -30,7 +30,7 @@ gdforms aims to be:
 
 - 'Eventually reliable' by default. We will ensure that integration errors can be handled as chosen by forms designers with sensible defaults wherever possible that avoid silent data loss or bad CX when thing don't work as expected.
 
-gdforms does not currently aim to be:
+crownforms does not currently aim to be:
 
 - A CRM or 'CRM lite' system to deal with fulfilment of requests from customer once they have been submitted.
 
@@ -46,7 +46,7 @@ The forms engine can already import and run many simple and moderately complex F
 
 The designer is currently the next priority.
 
-**Please contact me if you are interested in using gdforms**
+**Please contact me if you are interested in using crownforms**
 
 ## Development ##
 
@@ -60,12 +60,12 @@ For MiniKube run `minikube docker-env` and read the instructions.
 
 - **Build the initial container image for the app:**
 ```
-docker build -t gdforms .
+docker build -t crownforms .
 ```
 
 - **Deploy the full stack:**
 ```
-helm install --set image.repository=gdforms --set image.tag=latest gdforms .\charts\gdforms\
+helm install --set image.repository=crownforms --set image.tag=latest crownforms .\charts\crownforms\
 ```
 
 - **Wait for the deployment to complete and for init to run**
@@ -74,9 +74,9 @@ helm install --set image.repository=gdforms --set image.tag=latest gdforms .\cha
 
 - **Fetch the dependencies locally for debugging**
 ```
-cd gdforms-component
+cd crownforms-component
 yarn install
-cd ..\gdforms
+cd ..\crownforms
 yarn install
 ```
 

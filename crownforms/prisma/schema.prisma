@@ -1,0 +1,22 @@
+datasource db {
+  url      = env("CROWNFORMS_DATABASEURL")
+  provider = "postgresql"
+}
+generator client {
+  provider = "prisma-client-js"
+}
+model Service {
+  id    String  @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  url     String   @unique
+  name      String
+  form     Form
+}
+model Form {
+  id    String  @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  definition Json
+}

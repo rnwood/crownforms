@@ -8,12 +8,15 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    sodipodi:docname="logo.svg"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    id="svg8"
    version="1.1"
-   viewBox="0 0 49.916718 11.032334"
-   height="11.032334mm"
-   width="49.916718mm">
+   viewBox="0 0 73.908403 11.211534"
+   height="11.211535mm"
+   width="73.908401mm"
+   inkscape:export-filename="C:\src\RNW\crownforms\logo.png"
+   inkscape:export-xdpi="69.069717"
+   inkscape:export-ydpi="69.069717">
   <defs
      id="defs2">
     <rect
@@ -31,8 +34,8 @@
     <rect
        x="3.7797618"
        y="45.357143"
-       width="161.7738"
-       height="77.10714"
+       width="35.427647"
+       height="13.05544"
        id="rect835-8" />
     <rect
        x="3.7797618"
@@ -40,6 +43,30 @@
        width="161.7738"
        height="77.10714"
        id="rect1073" />
+    <rect
+       x="3.7797618"
+       y="45.357143"
+       width="30.730419"
+       height="12.881468"
+       id="rect835-8-6" />
+    <rect
+       x="3.7797618"
+       y="45.357143"
+       width="90.576584"
+       height="41.58675"
+       id="rect905" />
+    <rect
+       x="3.7797618"
+       y="45.357143"
+       width="35.427647"
+       height="13.05544"
+       id="rect835-8-0" />
+    <rect
+       x="3.7797618"
+       y="45.357143"
+       width="35.427647"
+       height="13.05544"
+       id="rect943" />
   </defs>
   <sodipodi:namedview
      fit-margin-bottom="0"
@@ -48,17 +75,17 @@
      fit-margin-top="0"
      inkscape:pagecheckerboard="true"
      inkscape:window-maximized="0"
-     inkscape:window-y="78"
-     inkscape:window-x="388"
+     inkscape:window-y="69"
+     inkscape:window-x="51"
      inkscape:window-height="1198"
      inkscape:window-width="1715"
      showgrid="false"
      inkscape:document-rotation="0"
      inkscape:current-layer="layer1"
      inkscape:document-units="mm"
-     inkscape:cy="114.9687"
-     inkscape:cx="241.74023"
-     inkscape:zoom="1.4283557"
+     inkscape:cy="95.021314"
+     inkscape:cx="146.42412"
+     inkscape:zoom="3.7694533"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      borderopacity="1.0"
@@ -78,14 +105,18 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(-2.0362941,-1.2319654)"
+     transform="translate(6.0738434,-6.3321484)"
      id="layer1"
      inkscape:groupmode="layer"
      inkscape:label="Layer 1">
+    <path
+       style="fill:none;stroke:#ffcc00;stroke-width:1.33148;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -5.4081034,8.8737933 1.0005183,8.0041497 H 5.5975987 L 6.5981181,8.8737933 3.0963039,11.37509 0.72007243,6.9978208 -1.9062887,11.37509 -5.4081034,8.8737933"
+       id="path52" />
     <text
        inkscape:export-ydpi="61.89912"
        inkscape:export-xdpi="61.89912"
-       inkscape:export-filename="C:\src\RNW\ef\gdforms\public\logo.png"
+       inkscape:export-filename="C:\src\RNW\ef\crownforms\public\logo.png"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect852);fill:#000000;fill-opacity:1;stroke:none;"
        id="text850"
        xml:space="preserve"><tspan
@@ -95,61 +126,39 @@
     <text
        xml:space="preserve"
        id="text833-7"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;line-height:1.25;font-family:Inter;-inkscape-font-specification:Inter;letter-spacing:-0.579437px;word-spacing:0px;white-space:pre;shape-inside:url(#rect835-8);fill:#000000;fill-opacity:1;stroke:none;"
-       transform="translate(5.6428552,-45.978031)"
-       inkscape:export-filename="C:\src\RNW\ef\gdforms\public\logo.png"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;line-height:1.25;font-family:Inter;-inkscape-font-specification:Inter;letter-spacing:-0.579437px;word-spacing:0px;white-space:pre;shape-inside:url(#rect835-8);fill:#ffffff;fill-opacity:1;stroke:none;"
+       transform="translate(4.7802507,-40.279854)"
+       inkscape:export-filename="C:\src\RNW\ef\crownforms\public\logo.png"
        inkscape:export-xdpi="69.069717"
        inkscape:export-ydpi="69.069717"><tspan
          x="3.7792969"
          y="55.804955"><tspan
-           style="shape-inside:url(#rect835-8);fill:#000000">gd</tspan><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.2889px;font-family:Inter;-inkscape-font-specification:'Inter Bold';fill:#000000">f</tspan><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Inter;-inkscape-font-specification:'Inter Bold';fill:#000000">orms</tspan></tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:11.2889px;font-family:Inter;-inkscape-font-specification:'Inter Medium';fill:#ffffff">crown</tspan></tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:8.46091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffd42a;fill-opacity:1;stroke:none;stroke-width:0.211524"
-       x="-0.16242467"
-       y="-12.780645"
-       id="text859"
-       transform="scale(3.3462704,-0.29884016)"
-       inkscape:export-filename="C:\src\RNW\ef\gdforms\public\logo.png"
+       id="text833-7-3"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;line-height:1.25;font-family:Inter;-inkscape-font-specification:Inter;letter-spacing:-0.286364px;word-spacing:0px;white-space:pre;shape-inside:url(#rect835-8-6);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="matrix(0.74747685,0,0,0.73092288,8.213538,-23.493646)"
+       inkscape:export-filename="C:\src\RNW\ef\crownforms\public\logo.png"
        inkscape:export-xdpi="69.069717"
        inkscape:export-ydpi="69.069717"><tspan
-         sodipodi:role="line"
-         id="tspan857"
-         x="-0.16242467"
-         y="-12.780645"
-         style="fill:#ffd42a;fill-opacity:1;stroke-width:0.211524">|</tspan></text>
-    <text
-       transform="scale(3.3462704,-0.29884016)"
-       id="text859-9"
-       y="-21.479429"
-       x="-0.95310456"
-       style="font-style:normal;font-weight:normal;font-size:8.4609px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffd42a;fill-opacity:1;stroke:none;stroke-width:0.211524"
-       xml:space="preserve"
-       inkscape:export-filename="C:\src\RNW\ef\gdforms\public\logo.png"
-       inkscape:export-xdpi="69.069717"
-       inkscape:export-ydpi="69.069717"><tspan
-         style="fill:#ffd42a;fill-opacity:1;stroke-width:0.211524"
-         y="-21.479429"
-         x="-0.95310456"
-         id="tspan857-1"
-         sodipodi:role="line">|</tspan></text>
+         style="visibility:hidden"
+         x="3.7792969"
+         y="68.685814"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:11.2889px;font-family:Inter;-inkscape-font-specification:'Inter Semi-Bold';letter-spacing:-0.207614px;fill:#000000">f</tspan><tspan
+           dx="4.2573886 6.863133 4.4778743 10.134341"
+           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-family:Inter;-inkscape-font-specification:'Inter Semi-Bold';letter-spacing:-0.207614px">orms</tspan></tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:8.4609px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffd42a;fill-opacity:1;stroke:none;stroke-width:0.211524"
-       x="-0.16242276"
-       y="-30.178213"
-       id="text859-9-1"
-       transform="scale(3.3462704,-0.29884016)"
-       inkscape:export-filename="C:\src\RNW\ef\gdforms\public\logo.png"
+       id="text833-7-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;line-height:1.25;font-family:Inter;-inkscape-font-specification:Inter;letter-spacing:-0.579437px;word-spacing:0px;white-space:pre;shape-inside:url(#rect835-8-0);fill:#ffffff;fill-opacity:1;stroke:none;"
+       transform="translate(37.120538,-40.279854)"
+       inkscape:export-filename="C:\src\RNW\ef\crownforms\public\logo.png"
        inkscape:export-xdpi="69.069717"
        inkscape:export-ydpi="69.069717"><tspan
-         sodipodi:role="line"
-         id="tspan857-1-1"
-         x="-0.16242276"
-         y="-30.178213"
-         style="fill:#ffd42a;fill-opacity:1;stroke-width:0.211524">|</tspan></text>
+         x="3.7792969"
+         y="55.804955"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Inter;-inkscape-font-specification:'Inter Light';fill:#ffffff">forms</tspan></tspan></text>
   </g>
   <script
      type="text/javascript"

@@ -4,6 +4,6 @@ node_modules
 /ClientApp/dist
 /client/src/testform.json.ts
 .vs
-/gdforms/debug.log
-/gdforms/pages/api/form/TestForm.ts
-/gdforms/.initdb
+/crownforms/debug.log
+/crownforms/pages/api/form/TestForm.ts
+/crownforms/.initdb

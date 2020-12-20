@@ -6,25 +6,25 @@ RUN apk add yarn
 ENV NODE_ENV="development"
 
 WORKDIR /app
-RUN mkdir gdforms
-RUN mkdir gdforms-components
+RUN mkdir crownforms
+RUN mkdir crownforms-components
 
-WORKDIR /app/gdforms-components
-COPY gdforms-components/package.json .
-COPY gdforms-components/yarn.lock .
+WORKDIR /app/crownforms-components
+COPY crownforms-components/package.json .
+COPY crownforms-components/yarn.lock .
 RUN yarn install
 
-WORKDIR /app/gdforms
-COPY gdforms/package.json .
-COPY gdforms/yarn.lock .
+WORKDIR /app/crownforms
+COPY crownforms/package.json .
+COPY crownforms/yarn.lock .
 RUN yarn install
 
-WORKDIR /app/gdforms-components
-COPY gdforms-components .
+WORKDIR /app/crownforms-components
+COPY crownforms-components .
 RUN export FASTBUILD=1 && yarn build
 
-WORKDIR /app/gdforms
-COPY gdforms .
+WORKDIR /app/crownforms
+COPY crownforms .
 
 ENV NODE_ENV=${NODE_ENV}
 RUN yarn build

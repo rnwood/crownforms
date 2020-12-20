@@ -1,9 +1,0 @@
-apiVersion: v1
-description: A Helm chart for Kubernetes
-name: gdforms
-version: v0.1.0
-dependencies:
-  - name: postgresql-ha
-    version: 6.0.1
-    repository: https://charts.bitnami.com/bitnami
-    alias: postgres

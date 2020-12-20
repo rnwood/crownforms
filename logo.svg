@@ -75,7 +75,7 @@
      fit-margin-top="0"
      inkscape:pagecheckerboard="true"
      inkscape:window-maximized="0"
-     inkscape:window-y="69"
+     inkscape:window-y="3"
      inkscape:window-x="51"
      inkscape:window-height="1198"
      inkscape:window-width="1715"
@@ -100,7 +100,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -126,14 +126,14 @@
     <text
        xml:space="preserve"
        id="text833-7"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;line-height:1.25;font-family:Inter;-inkscape-font-specification:Inter;letter-spacing:-0.579437px;word-spacing:0px;white-space:pre;shape-inside:url(#rect835-8);fill:#ffffff;fill-opacity:1;stroke:none;"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;line-height:1.25;font-family:Inter;-inkscape-font-specification:Inter;letter-spacing:-0.579437px;word-spacing:0px;white-space:pre;shape-inside:url(#rect835-8);fill:#000000;fill-opacity:1;stroke:none;"
        transform="translate(4.7802507,-40.279854)"
        inkscape:export-filename="C:\src\RNW\ef\crownforms\public\logo.png"
        inkscape:export-xdpi="69.069717"
        inkscape:export-ydpi="69.069717"><tspan
          x="3.7792969"
          y="55.804955"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:11.2889px;font-family:Inter;-inkscape-font-specification:'Inter Medium';fill:#ffffff">crown</tspan></tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:11.2889px;font-family:Inter;-inkscape-font-specification:'Inter Medium';fill:#000000">crown</tspan></tspan></text>
     <text
        xml:space="preserve"
        id="text833-7-3"
@@ -151,14 +151,14 @@
     <text
        xml:space="preserve"
        id="text833-7-8"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;line-height:1.25;font-family:Inter;-inkscape-font-specification:Inter;letter-spacing:-0.579437px;word-spacing:0px;white-space:pre;shape-inside:url(#rect835-8-0);fill:#ffffff;fill-opacity:1;stroke:none;"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;line-height:1.25;font-family:Inter;-inkscape-font-specification:Inter;letter-spacing:-0.579437px;word-spacing:0px;white-space:pre;shape-inside:url(#rect835-8-0);fill:#000000;fill-opacity:1;stroke:none;"
        transform="translate(37.120538,-40.279854)"
        inkscape:export-filename="C:\src\RNW\ef\crownforms\public\logo.png"
        inkscape:export-xdpi="69.069717"
        inkscape:export-ydpi="69.069717"><tspan
          x="3.7792969"
          y="55.804955"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Inter;-inkscape-font-specification:'Inter Light';fill:#ffffff">forms</tspan></tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Inter;-inkscape-font-specification:'Inter Light';fill:#000000">forms</tspan></tspan></text>
   </g>
   <script
      type="text/javascript"

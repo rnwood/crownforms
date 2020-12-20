@@ -4,9 +4,9 @@
 
 ## Motivation ##
 
-- There are no free and easy to use low-code e-forms packages that are GDS compliant by default. *So many government agency are duplicating the effort into achieving this or avoiding low-code totally*
+- There are no free and easy to use low-code e-forms packages that are GDS compliant by default. *So many government agencies are duplicating the effort achieving this or avoiding low-code totally*
 - Firmstep/Granicus Forms (aka AchieveForms) is targeted at and widely used by local authorities. It is one of the most powerful e-forms engines that doesn't cost £££££s but in my opinion has some major issues:
-  - It is hard to achieve processes that follow the GDS guidelines because the default behaviour need to be overriden on a per field/form basis to achieve this. *This does not scale well once you have more than a handful of forms*
+  - It is hard to achieve processes that follow the GDS guidelines because the defaults need to be overriden on a per field/form basis. *This does not scale well once you have more than a handful of forms*
   - Lookup and submission integrations (which are crucial to build anything non-trivial) do not have a documented way to detect errors and either retry or show a failure message. *This means it's hard to make services reliable and customers data can be lost.*
   - Rolling updates are great, but it's really hard to efficiently and accurately replicate all services in the pre-production environment provided and test within the short window provided given the facilities available on the platform. *This means that this often does not happen, and crucial services can become unavailable*
 

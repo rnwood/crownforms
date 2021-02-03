@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { FormDesigner } from "./designer";
 import { FormModel, IFormModelOptions } from "./renderer";
 
-class GdFormsDesigner {
+class CrownFormsDesigner {
   async init(elementId: string, options: IFormModelOptions | string): Promise<FormModel> {
     let formOptions: IFormModelOptions;
     if (typeof options === "string") {
@@ -23,6 +23,6 @@ class GdFormsDesigner {
   }
 }
 
-const instance = new GdFormsDesigner();
+const instance = new CrownFormsDesigner();
 
 export default instance;

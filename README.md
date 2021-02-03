@@ -74,7 +74,7 @@ helm install --set image.repository=crownforms --set image.tag=latest crownforms
 
 - **Fetch the dependencies locally for debugging**
 ```
-cd crownforms-component
+cd crownforms-components
 yarn install
 cd ..\crownforms
 yarn install

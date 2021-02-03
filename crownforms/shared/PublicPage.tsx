@@ -13,7 +13,7 @@ export abstract class PublicPage<TProps> extends Component<TProps> {
           <div className="govuk-header__logo">
             <a href="/" className="govuk-header__link govuk-header__link--homepage">
               <span className="govuk-header__logotype">
-                <img alt="GDFORMS" src="/logo.png"/>   
+                <img alt="CROWNFORMS" src="/logo.png"/>   
               </span>
             </a>
           </div>

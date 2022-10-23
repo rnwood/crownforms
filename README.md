@@ -1,4 +1,4 @@
-![crownforms](./logo.svg)
+![crownforms](./logo.png)
 
 **A low-code e-forms renderer and designer aiming to conform to the UK Government GDS Design System.** Includes Granicus/Firmstep Forms import to allow migration of existing services and the skills of existing form authors.
 
